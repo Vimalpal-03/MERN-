@@ -1,0 +1,1198 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors - CSS: Cascading Style Sheets | MDN Clone</title>
+    <style>
+        /* MDN-style Base Reset and Typography */
+        :root {
+            --text-main: #1b1b1b;
+            --link-color: #0052cc;
+            --link-hover: #003d99;
+            --code-bg: #f4f5f7;
+            --border-color: #cdcdcd;
+            --font-body: Inter, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            --font-code: "Menlo", "Consolas", "Monaco", monospace;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-main);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            background-color: #ffffff;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumbs a {
+            color: var(--text-main);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        /* Code and Preformatted Text */
+        code {
+            font-family: var(--font-code);
+            background-color: var(--code-bg);
+            padding: 0.15rem 0.3rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Syntax Highlighting Mock */
+        .token-selector { color: #d73a49; }
+        .token-property { color: #005cc5; }
+        .token-value { color: #032f62; }
+        .token-punctuation { color: #24292e; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f9f9fb;
+            font-weight: 600;
+        }
+
+        /* Note Box */
+        .note {
+            background-color: #f4f5f7;
+            border-left: 4px solid var(--link-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .note strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="breadcrumbs">
+        <a href="#">References</a> > <a href="#">CSS</a> > <strong>CSS selectors</strong>
+    </nav>
+
+    <main>
+        <article>
+            <h1>CSS selectors</h1>
+            
+            <p><strong>CSS selectors</strong> define the elements to which a set of CSS rules apply. They are the first part of a CSS Rule. It is a pattern of elements and other terms that tell the browser which HTML elements should be selected to have the CSS property values inside the rule applied to them.</p>
+
+            <div class="note">
+                <strong>Note:</strong>
+                <p>If a selector is invalid, the entire rule is ignored by the browser. This is a deliberate design choice to ensure that future CSS syntax additions don't break older browsers.</p>
+            </div>
+
+            <h2>Basic selectors</h2>
+            <p>These are the most common and fundamental selectors you will use to target elements.</p>
+
+            <h3>Type selector</h3>
+            <p>Selects all elements that match the given node name.</p>
+            <ul>
+                <li><strong>Syntax:</strong> <code>elementname</code></li>
+                <li><strong>Example:</strong> <code>input</code> will match any <code>&lt;input&gt;</code> element.</li>
+            </ul>
+<pre><code><span class="token-selector">p</span> <span class="token-punctuation">{</span>
+  <span class="token-property">color</span><span class="token-punctuation">:</span> <span class="token-value">blue</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+            <h3>Class selector</h3>
+            <p>Selects all elements that have the given <code>class</code> attribute.</p>
+            <ul>
+                <li><strong>Syntax:</strong> <code>.classname</code></li>
+                <li><strong>Example:</strong> <code>.index</code> will match any element that has a class of "index".</li>
+            </ul>
+<pre><code><span class="token-selector">.highlight</span> <span class="token-punctuation">{</span>
+  <span class="token-property">background-color</span><span class="token-punctuation">:</span> <span class="token-value">yellow</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+            <h3>ID selector</h3>
+            <p>Selects an element based on the value of its <code>id</code> attribute. There should be only one element with a given ID in a document.</p>
+            <ul>
+                <li><strong>Syntax:</strong> <code>#idname</code></li>
+                <li><strong>Example:</strong> <code>#toc</code> will match the element that has the ID "toc".</li>
+            </ul>
+<pre><code><span class="token-selector">#main-navigation</span> <span class="token-punctuation">{</span>
+  <span class="token-property">display</span><span class="token-punctuation">:</span> <span class="token-value">flex</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+            <h2>Combinators</h2>
+            <p>Combinators allow you to establish a relationship between different selectors, allowing for more precise targeting.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Combinator</th>
+                        <th>Syntax</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Descendant</strong></td>
+                        <td><code>A B</code></td>
+                        <td>Selects all elements matching B that are descendants of A (anywhere inside it).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Child</strong></td>
+                        <td><code>A > B</code></td>
+                        <td>Selects all elements matching B that are direct children of A.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Adjacent sibling</strong></td>
+                        <td><code>A + B</code></td>
+                        <td>Selects the element matching B that immediately follows element A.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>General sibling</strong></td>
+                        <td><code>A ~ B</code></td>
+                        <td>Selects all elements matching B that follow element A (do not have to be immediately adjacent).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Pseudo-classes and Pseudo-elements</h2>
+            
+            <h3>Pseudo-classes</h3>
+            <p>The <code>:</code> pseudo-class applies to an element when it is in a special state. For example, <code>:hover</code> applies when the user hovers over the element with a pointing device.</p>
+<pre><code><span class="token-selector">a:hover</span> <span class="token-punctuation">{</span>
+  <span class="token-property">text-decoration</span><span class="token-punctuation">:</span> <span class="token-value">none</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+            <h3>Pseudo-elements</h3>
+            <p>The <code>::</code> pseudo-element creates a virtual element that is treated as a descendant of the selected element. For example, <code>::before</code> inserts content before the element's actual content.</p>
+<pre><code><span class="token-selector">p::first-line</span> <span class="token-punctuation">{</span>
+  <span class="token-property">font-weight</span><span class="token-punctuation">:</span> <span class="token-value">bold</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+        </article>
+    </main>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors - CSS: Cascading Style Sheets | MDN</title>
+    <style>
+        /* Base Variables mimicking MDN themes */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1b1b1b;
+            --header-bg: #222222;
+            --header-text: #ffffff;
+            --link-color: #00539F;
+            --link-hover: #003d73;
+            --code-bg: #f9f9fb;
+            --border-color: #cdcdcd;
+            --sidebar-bg: #f5f6f7;
+            --font-main: Inter, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            --font-code: Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--link-hover);
+        }
+
+        /* Top Header Navigation */
+        .top-nav {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 4px solid #83d0f2;
+        }
+
+        .top-nav .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Layout Container */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            flex: 0 0 250px;
+            margin-right: 2rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                display: block;
+            }
+        }
+
+        .sidebar h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar li a {
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .sidebar li a:hover {
+            color: var(--link-color);
+        }
+
+        /* Main Content Area */
+        .content {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Inline Code and Code Blocks */
+        code {
+            font-family: var(--font-code);
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #c42360; /* MDN-style inline code color */
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        /* Notes / Callouts */
+        .note {
+            background-color: #eaf2fb;
+            border-left: 4px solid var(--link-color);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .note strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="logo">CSS Selectors docs </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Related Topics</h3>
+            <ul>
+                <li><a href="#">CSS References</a></li>
+                <li><a href="#"><strong>CSS Selectors</strong></a></li>
+                <li><a href="#">Combinators</a></li>
+                <li><a href="#">Pseudo-classes</a></li>
+                <li><a href="#">Pseudo-elements</a></li>
+                <li><a href="#">Specificity</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>CSS Selectors</h1>
+            <p><strong>CSS selectors</strong> define the elements to which a set of CSS rules apply.</p>
+            
+            <p>When styling a web page, you need a way to target specific HTML elements so you can apply colors, layouts, and other stylistic choices to them. Selectors are the first part of a CSS Rule. They act as the pattern matching mechanism of CSS.</p>
+
+            <div class="note">
+                <strong>Note:</strong> Understanding selectors is crucial for mastering CSS. The more precisely you can select elements, the cleaner and more maintainable your stylesheets will be.
+            </div>
+
+            <h2>Basic selectors</h2>
+
+            <h3>Universal selector</h3>
+            <p>Selects all elements. Optionally, it may be restricted to a specific namespace or to all namespaces.</p>
+            <p><strong>Syntax:</strong> <code>*</code></p>
+            <pre><code>* {
+  box-sizing: border-box;
+}</code></pre>
+
+            <h3>Type selector</h3>
+            <p>Selects all elements that have the given node name.</p>
+            <p><strong>Syntax:</strong> <code>elementname</code></p>
+            <pre><code>p {
+  line-height: 1.5;
+}</code></pre>
+
+            <h3>Class selector</h3>
+            <p>Selects all elements that have the given <code>class</code> attribute.</p>
+            <p><strong>Syntax:</strong> <code>.classname</code></p>
+            <pre><code>.highlight {
+  background-color: yellow;
+}</code></pre>
+
+            <h3>ID selector</h3>
+            <p>Selects an element based on the value of its <code>id</code> attribute. There should be only one element with a given ID in a document.</p>
+            <p><strong>Syntax:</strong> <code>#idname</code></p>
+            <pre><code>#main-navigation {
+  display: flex;
+}</code></pre>
+
+            <h2>Attribute selectors</h2>
+            <p>Selects elements based on the presence or value of a given attribute.</p>
+            <p><strong>Syntax:</strong> <code>[attr]</code>, <code>[attr=value]</code>, <code>[attr~=value]</code>, <code>[attr|=value]</code>, <code>[attr^=value]</code>, <code>[attr$=value]</code>, <code>[attr*=value]</code></p>
+            <pre><code>/* Selects any input element with a type attribute of "submit" */
+input[type="submit"] {
+  background-color: blue;
+  color: white;
+}</code></pre>
+
+            <h2>Combinators</h2>
+            <p>Combinators allow you to combine multiple selectors to target elements based on their relationship in the HTML document tree.</p>
+            <ul>
+                <li><strong>Descendant combinator (space):</strong> Selects nodes that are descendants of the first element. (e.g., <code>div span</code>)</li>
+                <li><strong>Child combinator (<code>&gt;</code>):</strong> Selects nodes that are direct children of the first element. (e.g., <code>ul &gt; li</code>)</li>
+                <li><strong>General sibling combinator (<code>~</code>):</strong> Selects siblings. This means that the second element follows the first (though not necessarily immediately), and both share the same parent. (e.g., <code>p ~ span</code>)</li>
+                <li><strong>Adjacent sibling combinator (<code>+</code>):</strong> Selects adjacent siblings. This means that the second element directly follows the first, and both share the same parent. (e.g., <code>h2 + p</code>)</li>
+            </ul>
+
+            <h2>Pseudo-classes and Pseudo-elements</h2>
+            
+            <h3>Pseudo-classes</h3>
+            <p>The <code>:</code> pseudo-class targets an element's state rather than its structural position in the DOM. For example, selecting a link only when a user hovers over it.</p>
+            <pre><code>a:hover {
+  text-decoration: underline;
+}</code></pre>
+
+            <h3>Pseudo-elements</h3>
+            <p>The <code>::</code> pseudo-element allows you to target virtual elements within the DOM, such as the first line of a paragraph or injecting content before an element.</p>
+            <pre><code>p::first-line {
+  font-weight: bold;
+}</code></pre>
+
+        </main>
+    </div>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Documentation</title>
+    <style>
+        /* Base Variables and Reset */
+        :root {
+            --bg-color: #ffffff;
+            --sidebar-bg: #f8f9fa;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --primary-color: #0f62fe;
+            --primary-hover: #0353e9;
+            --border-color: #e0e0e0;
+            --code-bg: #f4f4f4;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-code: "Fira Code", Consolas, Monaco, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Top Navigation */
+        header {
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .sidebar h3:first-child {
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            background-color: rgba(15, 98, 254, 0.1);
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 2rem 4rem;
+            overflow-y: auto;
+            max-width: 900px;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .content p {
+            margin-bottom: 1.2rem;
+            color: #444;
+        }
+
+        /* Code Blocks */
+        code {
+            font-family: var(--font-code);
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #d73a49;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 1.2rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e1e4e8;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #24292e;
+            font-size: 0.95rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #fcfcfc;
+            font-weight: 600;
+        }
+
+        /* Syntax Highlighting Fake Classes */
+        .tag { color: #22863a; }
+        .class { color: #005cc5; }
+        .id { color: #e36209; }
+        .prop { color: #005cc5; }
+        .val { color: #032f62; }
+        .punct { color: #24292e; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); height: auto; }
+            .content { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DevDocs Clone</h1>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <h3>Basic Selectors</h3>
+            <ul>
+                <li><a href="#universal">Universal Selector</a></li>
+                <li><a href="#type">Type Selector</a></li>
+                <li><a href="#class">Class Selector</a></li>
+                <li><a href="#id">ID Selector</a></li>
+            </ul>
+
+            <h3>Group & Attributes</h3>
+            <ul>
+                <li><a href="#grouping">Grouping Selector</a></li>
+                <li><a href="#attribute">Attribute Selector</a></li>
+            </ul>
+
+            <h3>Combinators</h3>
+            <ul>
+                <li><a href="#descendant">Descendant Combinator</a></li>
+                <li><a href="#child">Child Combinator</a></li>
+                <li><a href="#adjacent">Adjacent Sibling</a></li>
+                <li><a href="#general">General Sibling</a></li>
+            </ul>
+
+            <h3>Pseudo-classes & Elements</h3>
+            <ul>
+                <li><a href="#pseudo-class">Pseudo-classes</a></li>
+                <li><a href="#pseudo-element">Pseudo-elements</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>CSS Selectors Reference</h1>
+            <p>CSS selectors allow you to select and manipulate HTML elements. They are used to "find" (or select) the HTML elements you want to style. This document covers all standard categories of CSS selectors.</p>
+
+            <h2 id="basic">Basic Selectors</h2>
+
+            <h3 id="universal">1. Universal Selector (<code>*</code>)</h3>
+            <p>Selects all elements on the page.</p>
+<pre><code><span class="punct">*</span> <span class="punct">{</span>
+  <span class="prop">margin</span><span class="punct">:</span> <span class="val">0</span><span class="punct">;</span>
+  <span class="prop">padding</span><span class="punct">:</span> <span class="val">0</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="type">2. Type Selector</h3>
+            <p>Selects all elements that have the given HTML tag name.</p>
+<pre><code><span class="tag">h1</span> <span class="punct">{</span>
+  <span class="prop">color</span><span class="punct">:</span> <span class="val">blue</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="class">3. Class Selector (<code>.</code>)</h3>
+            <p>Selects all elements with a specific <code>class</code> attribute.</p>
+<pre><code><span class="class">.container</span> <span class="punct">{</span>
+  <span class="prop">max-width</span><span class="punct">:</span> <span class="val">1200px</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="id">4. ID Selector (<code>#</code>)</h3>
+            <p>Selects a single element with a specific <code>id</code> attribute. IDs must be unique within a document.</p>
+<pre><code><span class="id">#header</span> <span class="punct">{</span>
+  <span class="prop">background-color</span><span class="punct">:</span> <span class="val">black</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h2 id="grouping-attributes">Grouping & Attributes</h2>
+
+            <h3 id="grouping">5. Grouping Selector (<code>,</code>)</h3>
+            <p>Selects all the matching elements in the comma-separated list.</p>
+<pre><code><span class="tag">h1</span><span class="punct">,</span> <span class="tag">h2</span><span class="punct">,</span> <span class="tag">h3</span> <span class="punct">{</span>
+  <span class="prop">font-family</span><span class="punct">:</span> <span class="val">sans-serif</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="attribute">6. Attribute Selector (<code>[]</code>)</h3>
+            <p>Selects elements based on the presence or value of a given attribute.</p>
+            <table>
+                <tr>
+                    <th>Syntax</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>[target]</code></td>
+                    <td>Selects all elements with a target attribute.</td>
+                </tr>
+                <tr>
+                    <td><code>[target="_blank"]</code></td>
+                    <td>Selects all elements with target="_blank".</td>
+                </tr>
+                <tr>
+                    <td><code>[href^="https"]</code></td>
+                    <td>Selects every element whose href attribute value <strong>begins</strong> with "https".</td>
+                </tr>
+                <tr>
+                    <td><code>[href$=".pdf"]</code></td>
+                    <td>Selects every element whose href attribute value <strong>ends</strong> with ".pdf".</td>
+                </tr>
+                <tr>
+                    <td><code>[title*="flower"]</code></td>
+                    <td>Selects every element whose title attribute value <strong>contains</strong> the substring "flower".</td>
+                </tr>
+            </table>
+
+            <h2 id="combinators">Combinators</h2>
+
+            <h3 id="descendant">7. Descendant Combinator (Space)</h3>
+            <p>Selects all elements that are descendants of a specified element.</p>
+<pre><code><span class="tag">div</span> <span class="tag">p</span> <span class="punct">{</span>
+  <span class="prop">color</span><span class="punct">:</span> <span class="val">red</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="child">8. Child Combinator (<code>></code>)</h3>
+            <p>Selects all elements that are the direct children of a specified element.</p>
+<pre><code><span class="tag">ul</span> <span class="punct">></span> <span class="tag">li</span> <span class="punct">{</span>
+  <span class="prop">list-style</span><span class="punct">:</span> <span class="val">none</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="adjacent">9. Adjacent Sibling Combinator (<code>+</code>)</h3>
+            <p>Selects an element that is placed directly after another specific element.</p>
+<pre><code><span class="tag">h1</span> <span class="punct">+</span> <span class="tag">p</span> <span class="punct">{</span>
+  <span class="prop">font-size</span><span class="punct">:</span> <span class="val">1.2rem</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="general">10. General Sibling Combinator (<code>~</code>)</h3>
+            <p>Selects all elements that are siblings of a specified element and follow it in the document tree.</p>
+<pre><code><span class="tag">h1</span> <span class="punct">~</span> <span class="tag">p</span> <span class="punct">{</span>
+  <span class="prop">margin-top</span><span class="punct">:</span> <span class="val">10px</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h2 id="pseudo-classes-elements">Pseudo-classes & Pseudo-elements</h2>
+
+            <h3 id="pseudo-class">11. Pseudo-classes (<code>:</code>)</h3>
+            <p>Used to define a special state of an element.</p>
+            <ul>
+                <li><code>:hover</code> - Applies when the user hovers over an element.</li>
+                <li><code>:focus</code> - Applies when an element has focus (like an input field).</li>
+                <li><code>:first-child</code> - Matches an element that is the first child of its parent.</li>
+                <li><code>:nth-child(n)</code> - Matches elements based on their position in a group of siblings.</li>
+            </ul>
+<pre><code><span class="tag">button</span><span class="class">:hover</span> <span class="punct">{</span>
+  <span class="prop">background-color</span><span class="punct">:</span> <span class="val">gray</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+            <h3 id="pseudo-element">12. Pseudo-elements (<code>::</code>)</h3>
+            <p>Used to style specified parts of an element.</p>
+            <ul>
+                <li><code>::before</code> - Inserts content before the element's content.</li>
+                <li><code>::after</code> - Inserts content after the element's content.</li>
+                <li><code>::first-letter</code> - Styles the first letter of a block-level element.</li>
+            </ul>
+<pre><code><span class="tag">p</span><span class="class">::first-letter</span> <span class="punct">{</span>
+  <span class="prop">font-size</span><span class="punct">:</span> <span class="val">200%</span><span class="punct">;</span>
+  <span class="prop">color</span><span class="punct">:</span> <span class="val">red</span><span class="punct">;</span>
+<span class="punct">}</span></code></pre>
+
+        </main>
+    </div>
+
+    <script>
+        // Optional script to handle active states on sidebar links
+        const links = document.querySelectorAll('.sidebar a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors | Documentation Reference</title>
+    <style>
+        /* Minimalist "Pure" Documentation Theme */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Semantic Navigation */
+        nav {
+            background: #f6f8fa;
+            padding: 1rem;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        nav h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: #0969da;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Article & Sectioning */
+        article {
+            margin-top: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eaecef;
+        }
+
+        h1 { font-size: 2.5rem; border-bottom: 2px solid #eaecef; padding-bottom: 0.5rem; }
+        h2 { font-size: 1.75rem; margin-top: 2rem; }
+        h3 { font-size: 1.25rem; }
+
+        /* Code Typography */
+        code {
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            background-color: #eff1f3;
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow: auto;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            font-size: 0.95rem;
+            color: #24292f;
+        }
+
+        /* Native Tables */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            border: 1px solid #d0d7de;
+            padding: 0.5rem 1rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f6f8fa;
+        }
+
+        /* Callouts */
+        blockquote {
+            margin: 0;
+            padding: 0.5rem 1rem;
+            border-left: 4px solid #0969da;
+            background: #f0f8ff;
+            color: #24292f;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cascading Style Sheets: Selectors</h1>
+        <p>This document provides a complete reference to CSS selectors, categorized by their structural types.</p>
+    </header>
+
+    <nav aria-label="Table of Contents">
+        <h2>Quick Jump</h2>
+        <ul>
+            <li><a href="#simple-selectors">Simple Selectors</a></li>
+            <li><a href="#attribute-selectors">Attribute Selectors</a></li>
+            <li><a href="#combinators">Combinators</a></li>
+            <li><a href="#pseudo-classes">Pseudo-classes</a></li>
+            <li><a href="#pseudo-elements">Pseudo-elements</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article>
+            
+            <section id="simple-selectors">
+                <h2>1. Simple Selectors</h2>
+                <p>These target elements based on their core identity (name, id, or class).</p>
+
+                <h3>Type (Element) Selector</h3>
+                <p>Selects all elements of a specific HTML tag.</p>
+                <pre><code>p {
+  color: #333;
+}</code></pre>
+
+                <h3>Class Selector</h3>
+                <p>Selects all elements containing a specific class attribute. Prefixed with a period (<code>.</code>).</p>
+                <pre><code>.alert-box {
+  border: 1px solid red;
+}</code></pre>
+
+                <h3>ID Selector</h3>
+                <p>Selects a single, unique element based on its ID attribute. Prefixed with a hash (<code>#</code>).</p>
+                <pre><code>#main-header {
+  font-weight: bold;
+}</code></pre>
+
+                <h3>Universal Selector</h3>
+                <p>Selects all elements within the document. Represented by an asterisk (<code>*</code>).</p>
+                <pre><code>* {
+  box-sizing: border-box;
+}</code></pre>
+            </section>
+
+            <section id="attribute-selectors">
+                <h2>2. Attribute Selectors</h2>
+                <p>These target elements based on the presence or value of HTML attributes.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Syntax</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>[attr]</code></td>
+                            <td>Has the specified attribute.</td>
+                        </tr>
+                        <tr>
+                            <td><code>[attr="value"]</code></td>
+                            <td>Attribute has the exact value.</td>
+                        </tr>
+                        <tr>
+                            <td><code>[attr~="value"]</code></td>
+                            <td>Attribute contains the value as a whole word in a space-separated list.</td>
+                        </tr>
+                        <tr>
+                            <td><code>[attr^="value"]</code></td>
+                            <td>Attribute value begins with the specified string.</td>
+                        </tr>
+                        <tr>
+                            <td><code>[attr$="value"]</code></td>
+                            <td>Attribute value ends with the specified string.</td>
+                        </tr>
+                        <tr>
+                            <td><code>[attr*="value"]</code></td>
+                            <td>Attribute value contains the specified substring anywhere.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pre><code>input[type="text"] {
+  width: 100%;
+}</code></pre>
+            </section>
+
+            <section id="combinators">
+                <h2>3. Combinators</h2>
+                <p>These establish relationships between two or more selectors.</p>
+
+                <h3>Descendant Combinator (Space)</h3>
+                <p>Selects nodes that are descendants (children, grandchildren, etc.) of the first element.</p>
+                <pre><code>article p { margin-bottom: 1rem; }</code></pre>
+
+                <h3>Child Combinator (<code>></code>)</h3>
+                <p>Selects nodes that are <strong>direct</strong> children of the first element.</p>
+                <pre><code>ul > li { list-style-type: square; }</code></pre>
+
+                <h3>Adjacent Sibling Combinator (<code>+</code>)</h3>
+                <p>Selects the element that immediately follows the first element (must share the same parent).</p>
+                <pre><code>h2 + p { margin-top: 0; }</code></pre>
+
+                <h3>General Sibling Combinator (<code>~</code>)</h3>
+                <p>Selects all elements that follow the first element and share the same parent.</p>
+                <pre><code>h2 ~ p { color: gray; }</code></pre>
+            </section>
+
+            <section id="pseudo-classes">
+                <h2>4. Pseudo-classes</h2>
+                <p>Keywords added to selectors that specify a special <em>state</em> of the targeted element.</p>
+                
+                <blockquote>
+                    <strong>Note:</strong> Pseudo-classes always begin with a single colon (<code>:</code>).
+                </blockquote>
+
+                <ul>
+                    <li><code>:hover</code> - Triggers when the user points at an element.</li>
+                    <li><code>:focus</code> - Triggers when an element receives input focus.</li>
+                    <li><code>:nth-child(n)</code> - Targets an element based on its position in a list of siblings.</li>
+                    <li><code>:first-child</code> / <code>:last-child</code> - Targets the first or last element among siblings.</li>
+                    <li><code>:not(selector)</code> - Targets elements that do <strong>not</strong> match the provided selector.</li>
+                </ul>
+
+                <pre><code>a:hover {
+  text-decoration: underline;
+}
+
+li:nth-child(even) {
+  background-color: #f2f2f2;
+}</code></pre>
+            </section>
+
+            <section id="pseudo-elements">
+                <h2>5. Pseudo-elements</h2>
+                <p>Keywords added to selectors that let you style a specific <em>part</em> of the selected element.</p>
+
+                <blockquote>
+                    <strong>Note:</strong> In CSS3, pseudo-elements use a double colon (<code>::</code>) to distinguish them from pseudo-classes.
+                </blockquote>
+
+                <ul>
+                    <li><code>::before</code> - Inserts generated content before the element's actual content.</li>
+                    <li><code>::after</code> - Inserts generated content after the element's actual content.</li>
+                    <li><code>::first-letter</code> - Styles the first letter of a block-level element.</li>
+                    <li><code>::first-line</code> - Styles the first line of text in a block-level element.</li>
+                    <li><code>::selection</code> - Styles the portion of a document that has been highlighted by the user.</li>
+                </ul>
+
+                <pre><code>p::first-letter {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.quote::before {
+  content: "“";
+  color: gray;
+}</code></pre>
+            </section>
+
+        </article>
+    </main>
+
+    <footer>
+        <hr style="border: 0; border-top: 1px solid #eaecef; margin: 2rem 0;">
+        <p><small>Constructed using semantic HTML5 elements for optimal accessibility and structure.</small></p>
+    </footer>
+
+</body>
+</html>
