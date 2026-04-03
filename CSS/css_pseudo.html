@@ -1,0 +1,960 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Pseudo-Classes & Pseudo-Elements Docs</title>
+    <style>
+        /* --- CSS VARIABLES & BASE STYLES --- */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-color: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --code-bg: #1e293b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: var(--bg-color);
+            margin: 0;
+            display: flex;
+        }
+
+        /* --- LAYOUT: SIDEBAR & MAIN --- */
+        nav {
+            width: 250px;
+            background: white;
+            padding: 30px 20px;
+            border-right: 1px solid var(--border-color);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            box-sizing: border-box;
+        }
+
+        nav h3 { margin-top: 0; color: var(--primary); }
+        nav ul { list-style: none; padding: 0; }
+        nav li { margin-bottom: 10px; }
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-muted); 
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--primary); }
+
+        main {
+            flex: 1;
+            padding: 50px;
+            max-width: 900px;
+        }
+
+        /* --- TYPOGRAPHY & UTILITIES --- */
+        h1 { font-size: 2.5rem; margin-top: 0; }
+        h2 { border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 40px; }
+        p { color: var(--text-muted); }
+        
+        .demo-box {
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px 8px 0 0;
+            background: white;
+            margin-top: 20px;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #f8fafc;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            margin-top: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        inline-code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ef4444;
+        }
+
+        /* =========================================
+           DEMO STYLES: PSEUDO-CLASSES
+           ========================================= */
+        
+        /* 1. Hover, Focus & Active */
+        .btn {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .btn:active { transform: translateY(0); }
+        .btn:focus { outline: 3px solid #c7d2fe; outline-offset: 2px; }
+
+        /* 2. Nth-Child */
+        .zebra-list { list-style: none; padding: 0; margin: 0; border: 1px solid var(--border-color); border-radius: 6px; }
+        .zebra-list li { padding: 12px 20px; border-bottom: 1px solid var(--border-color); }
+        .zebra-list li:last-child { border-bottom: none; }
+        
+        .zebra-list li:nth-child(odd) { background-color: #f1f5f9; }
+        .zebra-list li:hover { background-color: #e2e8f0; } /* Combining pseudo-classes */
+
+
+        /* =========================================
+           DEMO STYLES: PSEUDO-ELEMENTS
+           ========================================= */
+
+        /* 3. Before & After */
+        .quote-box {
+            font-size: 1.2rem;
+            font-style: italic;
+            position: relative;
+            padding: 0 20px;
+            color: var(--text-main);
+        }
+        
+        .quote-box::before {
+            content: '“';
+            font-size: 4rem;
+            color: #cbd5e1;
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            font-family: serif;
+        }
+
+        .quote-box::after {
+            content: '”';
+            font-size: 4rem;
+            color: #cbd5e1;
+            position: absolute;
+            right: -10px;
+            bottom: -50px;
+            font-family: serif;
+        }
+
+        /* 4. First-Letter & Selection */
+        .article-text::first-letter {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        .article-text::selection {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h3>CSS Docs</h3>
+        <ul>
+            <li><a href="#pseudo-classes">Pseudo-Classes</a></li>
+            <li><a href="#pseudo-elements">Pseudo-Elements</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>CSS Selectors Guide</h1>
+        <p>Welcome to the documentation. Learn how to target specific element states and inject content dynamically using CSS Pseudo-classes and Pseudo-elements.</p>
+
+        <section id="pseudo-classes">
+            <h2>1. Pseudo-Classes (<inline-code>:pseudo-class</inline-code>)</h2>
+            <p>A pseudo-class is attached to a selector and specifies a special <strong>state</strong> of the selected element (e.g., when a user hovers over it).</p>
+
+            <h3>Interactive States (:hover, :focus, :active)</h3>
+            <p>Try hovering, clicking, and using the "Tab" key to focus on the button below.</p>
+            <div class="demo-box">
+                <button class="btn">Interact With Me</button>
+            </div>
+<pre><code>.btn { transition: all 0.2s ease; }
+
+/* Changes background when mouse is over */
+.btn:hover { background: #4f46e5; }
+
+/* Triggers when the button is actively clicked */
+.btn:active { transform: translateY(0); }
+
+/* Triggers when navigating via keyboard (Tab) */
+.btn:focus { outline: 3px solid #c7d2fe; }</code></pre>
+
+            <h3>Structural Targeting (:nth-child)</h3>
+            <p>Target elements based on their position in a group of siblings. Great for zebra-striping tables or lists.</p>
+            <div class="demo-box">
+                <ul class="zebra-list">
+                    <li>List Item 1 (Odd)</li>
+                    <li>List Item 2 (Even)</li>
+                    <li>List Item 3 (Odd)</li>
+                    <li>List Item 4 (Even)</li>
+                </ul>
+            </div>
+<pre><code>/* Targets the 1st, 3rd, 5th, etc. items */
+.zebra-list li:nth-child(odd) { 
+    background-color: #f1f5f9; 
+}</code></pre>
+        </section>
+
+        <section id="pseudo-elements">
+            <h2>2. Pseudo-Elements (<inline-code>::pseudo-element</inline-code>)</h2>
+            <p>A pseudo-element acts as if you had added a whole new HTML element, allowing you to style a specific <strong>part</strong> of an element or inject content.</p>
+
+            <h3>Injecting Content (::before, ::after)</h3>
+            <p>Insert decorative elements without cluttering your HTML markup. The <inline-code>content</inline-code> property is required.</p>
+            <div class="demo-box" style="padding: 50px;">
+                <div class="quote-box">Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</div>
+            </div>
+<pre><code>.quote-box { position: relative; }
+
+/* Injects an opening quote before the text */
+.quote-box::before {
+    content: '“';
+    font-size: 4rem;
+    position: absolute;
+    left: -10px;
+}
+
+/* Injects a closing quote after the text */
+.quote-box::after {
+    content: '”';
+    font-size: 4rem;
+    position: absolute;
+    right: -10px;
+}</code></pre>
+
+            <h3>Typography (::first-letter, ::selection)</h3>
+            <p>Highlight the text below with your cursor to see the custom selection color. Notice the automatically styled drop-cap.</p>
+            <div class="demo-box">
+                <p class="article-text">Cascading Style Sheets is a stylesheet language used to describe the presentation of a document written in HTML or XML. It is a cornerstone technology of the World Wide Web, alongside HTML and JavaScript.</p>
+            </div>
+<pre><code>/* Creates a magazine-style drop cap */
+.article-text::first-letter {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #6366f1;
+    float: left;
+}
+
+/* Overrides the default blue text highlight color */
+.article-text::selection {
+    background: #6366f1;
+    color: white;
+}</code></pre>
+        </section>
+    </main>
+
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Documentation</title>
+    <style>
+        /* --- Core Variables & Reset --- */
+        :root {
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #0ea5e9;
+            --accent-hover: #0284c7;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --sidebar-width: 260px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-base);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- Layout: Sidebar --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-surface);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #f1f5f9;
+            color: var(--accent);
+        }
+
+        /* --- Layout: Main Content --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 1000px;
+        }
+
+        /* --- Typography & Elements --- */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- Code & Demo Blocks --- */
+        .demo-container {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px 8px 0 0;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+            overflow-x: auto;
+            font-family: "Fira Code", Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        code.inline {
+            background-color: #f1f5f9;
+            color: #db2777;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        /* =========================================
+           LIVE DEMO STYLES (The actual CSS being documented)
+           ========================================= */
+
+        /* 1. Pseudo-classes: Hover, Active, Focus */
+        .demo-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .demo-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .demo-btn:focus {
+            outline: 3px solid #7dd3fc;
+            outline-offset: 2px;
+        }
+
+        /* 2. Pseudo-classes: Nth-child */
+        .demo-list {
+            list-style: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .demo-list li {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .demo-list li:last-child {
+            border-bottom: none;
+        }
+
+        .demo-list li:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .demo-list li:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        /* 3. Pseudo-elements: Before & After */
+        .demo-quote {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-muted);
+            position: relative;
+            padding: 1rem 2.5rem;
+            background: #f1f5f9;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .demo-quote::before {
+            content: "\201C"; /* Left double quote */
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: #cbd5e1;
+            position: absolute;
+            left: 5px;
+            top: -10px;
+        }
+
+        .demo-quote::after {
+            content: "\201D"; /* Right double quote */
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: #cbd5e1;
+            position: absolute;
+            right: 10px;
+            bottom: -40px;
+        }
+
+        /* 4. Pseudo-elements: Selection & Placeholder */
+        .demo-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .demo-input::placeholder {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        .selection-text::selection {
+            background-color: #fce7f3;
+            color: #db2777;
+        }
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>CSS Docs</h2>
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#pseudo-classes">Pseudo-Classes</a></li>
+                <li><a href="#pseudo-elements">Pseudo-Elements</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <section id="introduction">
+            <h1>Advanced CSS Selectors</h1>
+            <p>Welcome to the official documentation for CSS Pseudo-classes and Pseudo-elements. These selectors allow you to style elements based on their state, position in the document, or even generate new content entirely via CSS.</p>
+        </section>
+
+        <section id="pseudo-classes">
+            <h2>Pseudo-Classes</h2>
+            <p>A pseudo-class uses a single colon <code class="inline">:</code> and styles an element based on a specific <strong>state</strong> or <strong>relationship</strong>.</p>
+
+            <h3>1. Interactive States (:hover, :active, :focus)</h3>
+            <p>Interact with the button below (hover, click, and press Tab) to see the states change.</p>
+            
+            <div class="demo-container">
+                <button class="demo-btn">Interactive Button</button>
+            </div>
+<pre><code>.demo-btn:hover {
+  background-color: #0284c7;
+  transform: translateY(-2px);
+}
+
+.demo-btn:active {
+  transform: translateY(0);
+}
+
+.demo-btn:focus {
+  outline: 3px solid #7dd3fc;
+}</code></pre>
+
+            <h3>2. Structural Selectors (:nth-child)</h3>
+            <p>Useful for targeting elements based on their order, such as alternating row colors in a list or table.</p>
+
+            <div class="demo-container">
+                <ul class="demo-list">
+                    <li>Item 1 (Odd)</li>
+                    <li>Item 2 (Even)</li>
+                    <li>Item 3 (Odd)</li>
+                    <li>Item 4 (Even)</li>
+                </ul>
+            </div>
+<pre><code>/* Targets the 2nd, 4th, 6th, etc. items */
+.demo-list li:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* Targets the 1st, 3rd, 5th, etc. items */
+.demo-list li:nth-child(odd) {
+  background-color: #ffffff;
+}</code></pre>
+        </section>
+
+        <section id="pseudo-elements">
+            <h2>Pseudo-Elements</h2>
+            <p>A pseudo-element uses a double colon <code class="inline">::</code> (though single colons work for legacy support) and allows you to style a specific <strong>part</strong> of an element or insert virtual content.</p>
+
+            <h3>1. Generating Content (::before, ::after)</h3>
+            <p>These insert virtual elements directly before or after an element's actual content. The <code class="inline">content</code> property is strictly required.</p>
+
+            <div class="demo-container">
+                <div class="demo-quote">
+                    CSS pseudo-elements let you add decorative content without bloating your HTML markup.
+                </div>
+            </div>
+<pre><code>.demo-quote {
+  position: relative;
+}
+
+/* Inserts a large quote mark before the text */
+.demo-quote::before {
+  content: "\201C"; 
+  position: absolute;
+  font-size: 4rem;
+  left: 5px;
+}
+
+/* Inserts a large quote mark after the text */
+.demo-quote::after {
+  content: "\201D"; 
+  position: absolute;
+  font-size: 4rem;
+  right: 10px;
+}</code></pre>
+
+            <h3>2. Input Placeholder & Text Selection</h3>
+            <p>Style the hint text inside inputs, and change the highlight color when a user selects text.</p>
+
+            <div class="demo-container">
+                <input type="text" class="demo-input" placeholder="Type something here...">
+                <p class="selection-text" style="margin-top: 1rem;">
+                    Highlight this specific sentence with your mouse to see the custom pink selection background!
+                </p>
+            </div>
+<pre><code>/* Styles the placeholder text inside inputs */
+.demo-input::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Styles the background and text color when highlighted */
+.selection-text::selection {
+  background-color: #fce7f3;
+  color: #db2777;
+}</code></pre>
+        </section>
+    </main>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Pseudo-classes & Pseudo-elements Documentation</title>
+    <style>
+        /* --- DESIGN TOKENS (Variables) --- */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --brand: #6366f1;
+            --brand-hover: #4f46e5;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #f8fafc;
+            --sidebar-width: 280px;
+        }
+
+        /* --- BASE STYLES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.7;
+            display: flex;
+        }
+
+        h1, h2, h3 { line-height: 1.2; font-weight: 700; margin-bottom: 0.75rem; }
+        h1 { font-size: 2.5rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.75rem; margin-top: 3rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        h3 { font-size: 1.25rem; margin-top: 2rem; color: var(--brand); }
+        p { color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 1.05rem; }
+        
+        code.inline {
+            background-color: #f1f5f9;
+            color: #ec4899;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9em;
+        }
+
+        /* --- LAYOUT --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-surface);
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid var(--border);
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .sidebar-brand { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 2rem; display: block; text-decoration: none; }
+        .sidebar-brand span { color: var(--brand); }
+        .nav-group { margin-bottom: 1.5rem; }
+        .nav-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.5rem; }
+        .nav-links { list-style: none; }
+        .nav-links li { margin-bottom: 0.25rem; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 500; display: block; padding: 0.5rem 0.75rem; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover, .nav-links a.active { background-color: #e0e7ff; color: var(--brand-hover); }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 3rem 4rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* --- COMPONENTS --- */
+        .demo-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 1.5rem 0 2.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        .demo-preview { padding: 2rem; border-bottom: 1px solid var(--border); }
+        .demo-code { background: var(--code-bg); padding: 1.5rem; overflow-x: auto; }
+        .demo-code pre { color: var(--code-text); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.9rem; line-height: 1.5; }
+
+        /* =========================================
+           LIVE CSS DEMOS (The actual subject matter)
+           ========================================= */
+
+        /* 1. Pseudo-classes: Interactive states */
+        .btn-demo {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--brand);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-demo:hover { background-color: var(--brand-hover); transform: translateY(-2px); }
+        .btn-demo:active { transform: translateY(0); background-color: #3730a3; }
+        .btn-demo:focus { outline: 3px solid #a5b4fc; outline-offset: 2px; }
+
+        /* 2. Pseudo-classes: Structural (:nth-child, :first-child) */
+        .list-demo { list-style: none; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+        .list-demo li { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); color: var(--text-primary); }
+        .list-demo li:last-child { border-bottom: none; }
+        
+        .list-demo li:nth-child(odd) { background-color: #f8fafc; }
+        .list-demo li:nth-child(even) { background-color: #ffffff; }
+        .list-demo li:hover { background-color: #e0e7ff; cursor: pointer; } /* Combining pseudo-classes */
+
+        /* 3. Pseudo-elements: Content injection (::before, ::after) */
+        .quote-demo {
+            position: relative;
+            padding: 1.5rem 3rem;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            background: #f1f5f9;
+            border-left: 4px solid var(--brand);
+            border-radius: 4px;
+        }
+
+        .quote-demo::before {
+            content: "❝";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            color: #cbd5e1;
+            line-height: 1;
+        }
+
+        /* 4. Pseudo-elements: Typography (::first-letter, ::selection) */
+        .typography-demo { font-size: 1.1rem; }
+        
+        .typography-demo::first-letter {
+            float: left;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-right: 0.5rem;
+            padding-top: 0.25rem;
+            font-weight: 900;
+            color: var(--brand);
+        }
+
+        .typography-demo::selection {
+            background-color: #fce7f3;
+            color: #be185d;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a href="#" class="sidebar-brand">CSS<span>Docs</span></a>
+        
+        <div class="nav-group">
+            <div class="nav-title">Overview</div>
+            <ul class="nav-links">
+                <li><a href="#introduction">Introduction</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-title">Selectors</div>
+            <ul class="nav-links">
+                <li><a href="#pseudo-classes">Pseudo-classes ( : )</a></li>
+                <li><a href="#pseudo-elements">Pseudo-elements ( :: )</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section id="introduction">
+            <h1>CSS Pseudo-classes & Pseudo-elements</h1>
+            <p>Welcome to the documentation. These advanced CSS selectors allow you to style elements based on their state, their position in the document tree, or even create entirely new virtual elements without adding extra HTML markup.</p>
+        </section>
+
+        <section id="pseudo-classes">
+            <h2>1. Pseudo-classes</h2>
+            <p>A pseudo-class is a keyword added to a selector that specifies a special <strong>state</strong> of the selected element(s). They are prefixed with a single colon <code class="inline">:</code>.</p>
+
+            <h3>Interactive States (:hover, :active, :focus)</h3>
+            <p>These are triggered by user interaction. Try hovering, clicking, and pressing the <code>Tab</code> key to focus the button below.</p>
+            
+            <div class="demo-block">
+                <div class="demo-preview">
+                    <button class="btn-demo">Interact with me</button>
+                </div>
+                <div class="demo-code">
+<pre><code>.btn-demo:hover {
+  background-color: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.btn-demo:active {
+  transform: translateY(0);
+}
+
+.btn-demo:focus {
+  outline: 3px solid #a5b4fc;
+}</code></pre>
+                </div>
+            </div>
+
+            <h3>Structural Selectors (:nth-child)</h3>
+            <p>Target elements based on their position among siblings. Highly useful for alternating styles in tables or lists.</p>
+
+            <div class="demo-block">
+                <div class="demo-preview">
+                    <ul class="list-demo">
+                        <li>Item 1 (Odd)</li>
+                        <li>Item 2 (Even)</li>
+                        <li>Item 3 (Odd)</li>
+                        <li>Item 4 (Even)</li>
+                    </ul>
+                </div>
+                <div class="demo-code">
+<pre><code>/* Styles every odd list item */
+.list-demo li:nth-child(odd) {
+  background-color: #f8fafc;
+}
+
+/* Styles every even list item */
+.list-demo li:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* You can combine them! */
+.list-demo li:hover {
+  background-color: #e0e7ff;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="pseudo-elements">
+            <h2>2. Pseudo-elements</h2>
+            <p>A pseudo-element is a keyword added to a selector that lets you style a specific <strong>part</strong> of the selected element. In CSS3, they are prefixed with a double colon <code class="inline">::</code> to distinguish them from pseudo-classes.</p>
+
+            <h3>Generating Content (::before, ::after)</h3>
+            <p>These allow you to insert content onto a page from CSS. The <code class="inline">content</code> property is strictly required for these to render.</p>
+
+            <div class="demo-block">
+                <div class="demo-preview">
+                    <div class="quote-demo">
+                        CSS pseudo-elements let you add decorative flair and icons without cluttering up your clean HTML structure.
+                    </div>
+                </div>
+                <div class="demo-code">
+<pre><code>.quote-demo {
+  position: relative;
+  padding-left: 3rem;
+}
+
+/* Injects a giant quote mark inside the element, before the text */
+.quote-demo::before {
+  content: "❝";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 3rem;
+  color: #cbd5e1;
+}</code></pre>
+                </div>
+            </div>
+
+            <h3>Typography Control (::first-letter, ::selection)</h3>
+            <p>Highlight the paragraph below with your mouse cursor to see the custom selection color. Notice the magazine-style drop cap created automatically.</p>
+
+            <div class="demo-block">
+                <div class="demo-preview">
+                    <p class="typography-demo">Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML. Select this text to see the custom highlight color in action!</p>
+                </div>
+                <div class="demo-code">
+<pre><code>/* Creates a classic drop-cap effect */
+.typography-demo::first-letter {
+  float: left;
+  font-size: 4rem;
+  font-weight: 900;
+  color: #6366f1;
+}
+
+/* Overrides the browser's default blue highlight color */
+.typography-demo::selection {
+  background-color: #fce7f3;
+  color: #be185d;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    links.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
