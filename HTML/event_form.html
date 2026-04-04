@@ -1,117 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+
+        h1 {
+            color: rgba(235, 97, 17, 0.938);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-style: italic;
+            font-weight: bold;
+
+        } 
+        img {
+            border: 5px solid rgb(248, 240, 244);
+            border-radius: 10px;
+        }
+        li::marker {
+            
+            color: crimson;
+
+        }
+        li{
+            color: rgb(245, 240, 248);
+            font-family: 16px Arial, Helvetica, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            font-size: larger;
+
+        }
+
+        p:nth-child(even) {
+            color: rgb(255, 255, 255);
+            font-family: 16px Arial, Helvetica, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            font-size: larger;
+
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            color: rgb(228, 40, 40);
+            font-weight: bold;
+        }
+        
+        fieldset {
+            border: 3px solid rgb(233, 240, 243);
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: rgb(7, 99, 136);
+        }
+        label{
+            color: rgb(243, 239, 245);
+            font-weight: bold;
+        }
+
+        legend {
+            color: rgb(255, 255, 255);
+            font-weight: bold;
+            font-size: larger;
+            font-family: monospace,sans-serif,'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        input[type="submit"] {
+            background-color: rgb(246, 247, 250);
+            color: rgb(14, 13, 13);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+
+    </style>
 </head>
+
 <body>
     <h1>College Event Form</h1>
-    <form action=""> 
+    <form action="">
         <fieldset>
-             <fieldset>
-            <legend>Event Information</legend>
+            <fieldset>
+                <legend>Event Information</legend>
 
-            <img src="./images/trivia night.jfif" alt="event image" width="300"><br><br>
+                <img src="./images/trivia night.jfif" alt="event image" width="300"><br><br>
 
-            <label for="">Event Name:</label>
-            <input type="text" name="Travia Night" id="Travia Night" ><br><br>
+                <label for="">Event Name:</label>
+                <input type="text" name="Travia Night" id="Travia Night"><br><br>
 
-            <label for="">Event Date:</label>
-            <input type="date" name="eventDate" id="eventDate"><br><br>
+                <label for="">Event Date:</label>
+                <input type="date" name="eventDate" id="eventDate"><br><br>
 
-            <label for="">Event Time:</label>
-            <input type="time" name="eventTime" id="eventTime"><br><br>
+                <label for="">Event Time:</label>
+                <input type="time" name="eventTime" id="eventTime"><br><br>
 
-            <label for="">Event Type:</label>
-            <select name="eventType" id="eventType">
-                <option value="">Select Event Type</option>
-                <option value="music workshop">Music Workshop</option>
-                <option value="dance">Dance</option>
-                <option value="techconference">Tech Conference</option>
-                <option value="quiz game">Quiz Games</option>
-            </select><br><br>
+                <label for="">Event Type:</label>
+                <select name="eventType" id="eventType">
+                    <option value="">Select Event Type</option>
+                    <option value="music workshop">Music Workshop</option>
+                    <option value="dance">Dance</option>
+                    <option value="techconference">Tech Conference</option>
+                    <option value="quiz game">Quiz Games</option>
+                </select><br><br>
 
-            <label for="">Location:</label>
-            <input type="text" name="location" id="location" placeholder="enter event location"><br><br>
+                <label for="">Location:</label>
+                <input type="text" name="location" id="location" placeholder="enter event location"><br><br>
 
-            <label for="">Description:</label><br>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="enter event description"></textarea><br><br>
+                <label for="">Description:</label><br>
+                <textarea name="description" id="description" cols="30" rows="10"
+                    placeholder="enter event description"></textarea><br><br>
 
-            
-        </fieldset>
-        <fieldset>
-            <legend>Organizer Information</legend>
 
-            <label for="">Organizer Name:</label>
-            <input type="text" name="organizerName" id="organizerName" placeholder="enter organizer name"><br><br>
-
-            <label for="">Contact Email:</label>
-            <input type="email" name="contactEmail" id="contactEmail" placeholder="enter contact email"><br><br>
-
-            <label for="">Contact Phone:</label>
-            <input type="tel" name="contactPhone" id="contactPhone" placeholder="enter contact phone"><br><br>
-        </fieldset>
-        <fieldset>
-            <legend>Event Registration Form for Students</legend>
-            <label for="">Student Name:</label>
-            <input type="text" name="studentName" id="studentName" placeholder="enter student name"><br><br>
-            <label for="">Student Email:</label>
-            <input type="email" name="studentEmail" id="studentEmail" placeholder="enter student email"><br><br>
-
-            <label for="">Student From:</label>
-            <select name="studentFrom" id="studentFrom">
-                <option value="">Select Student Type</option>
-                <option value="hosteler">Hosteler</option>
-                <option value="non-hosteler">Non-Hosteler</option>
-            </select>
+            </fieldset>
             <br>
             <br>
-            <label for="">Student ID:</label>
-            <input type="text" name="studentID" id="studentID" placeholder="enter student ID"><br><br>
-            <label for="">Event Selection:</label>
-            <select name="eventSelection" id="eventSelection">
-                <option value="">Select Event</option>
-                <option value="trivia night">Trivia Night</option>
-                <option value="music workshop">Music Workshop</option>
-                <option value="dance">Dance</option>
-                <option value="techconference">Tech Conference</option>
-                <option value="quiz game">Quiz Games</option>
-            </select><br><br>
-            <input type="submit" value="Register">
+            <fieldset>
+                <legend>Organizer Information</legend>
+
+                <label for="">Organizer Name:</label>
+                <input type="text" name="organizerName" id="organizerName" placeholder="enter organizer name"><br><br>
+
+                <label for="">Contact Email:</label>
+                <input type="email" name="contactEmail" id="contactEmail" placeholder="enter contact email"><br><br>
+
+                <label for="">Contact Phone:</label>
+                <input type="tel" name="contactPhone" id="contactPhone" placeholder="enter contact phone"><br><br>
+            </fieldset>
+            <br>
+            <br>
+            <fieldset>
+                <legend>Event Registration Form for Students</legend>
+                <label for="">Student Name:</label>
+                <input type="text" name="studentName" id="studentName" placeholder="enter student name"><br><br>
+                <label for="">Student Email:</label>
+                <input type="email" name="studentEmail" id="studentEmail" placeholder="enter student email"><br><br>
+
+                <label for="">Student From:</label>
+                <select name="studentFrom" id="studentFrom">
+                    <option value="">Select Student Type</option>
+                    <option value="hosteler">Hosteler</option>
+                    <option value="non-hosteler">Non-Hosteler</option>
+                </select>
+                <br>
+                <br>
+                <label for="">Student ID:</label>
+                <input type="text" name="studentID" id="studentID" placeholder="enter student ID"><br><br>
+                <label for="">Event Selection:</label>
+                <select name="eventSelection" id="eventSelection">
+                    <option value="">Select Event</option>
+                    <option value="trivia night">Trivia Night</option>
+                    <option value="music workshop">Music Workshop</option>
+                    <option value="dance">Dance</option>
+                    <option value="techconference">Tech Conference</option>
+                    <option value="quiz game">Quiz Games</option>
+                </select><br><br>
+                <input type="submit" value="Register">
+            </fieldset>
+            <fieldset>
+                <ul>
+                <li>
+                    <h3>Event Schedule:</h3>
+                    <li>10:00 AM - 11:00 AM: Opening Ceremony</li>
+                    <li>11:00 AM - 12:30 PM: Trivia Night</li>
+                    <li>12:30 PM - 1:30 PM: Lunch Break</li>
+                    <li>1:30 PM - 3:00 PM: Music Workshop</li>
+                    <li>3:00 PM - 4:30 PM: Dance Performance</li>
+                    <li>4:30 PM - 6:00 PM: Tech Conference</li>
+                    <li>6:00 PM - 7:30 PM: Quiz Games</li>
+                </li>
+                <li>
+                    <h3>Event Rules:</h3>
+                    <li> All participants must register before the event.</li>
+                    <li> Participants must adhere to the event schedule.</li>
+                    <li> No outside food or drinks allowed.</li>
+                    <li> Participants must follow the instructions of event staff.</li>
+                    <li> Any form of misconduct will result in disqualification.</li>
+                </li>
+                <li>
+                    <h3>Event Prizes:</h3>
+                    <li>1st Place: $500 Gift Card</li>
+                    <li>2nd Place: $300 Gift Card</li>
+                    <li>3rd Place: $100 Gift Card</li>
+                    <p>All participants will receive a certificate of participation.</p>
+                </li>
+                <li>
+                    <h3>Event Contact Information:</h3>
+                    <p>Email: event@example.com</p>
+                    <p>Phone: (123) 456-7890</p>
+
+                </li>
+                <li>
+                    <h3>Event COVID-19 Guidelines:</h3>
+                    <p>1. All participants must wear masks at all times.</p>
+                    <p>2. Hand sanitizers will be provided at the venue.</p>
+                    <p>3. Social distancing must be maintained at all times.</p>
+                    <p>4. Participants are encouraged to get vaccinated before attending the event.</p>
+                </li>
+                </ul>
+            </fieldset>
         </fieldset>
-        </fieldset>
-        <!-- <fieldset>
-            <legend>Event Information</legend>
 
-            <img src="./images/trivia night.jfif" alt="event image" width="300"><br><br>
+    </form>
 
-            <label for="">Event Name:</label>
-            <input type="text" name="Travia Night" id="Travia Night" ><br><br>
 
-            <label for="">Event Date:</label>
-            <input type="date" name="eventDate" id="eventDate"><br><br>
-
-            <label for="">Event Time:</label>
-            <input type="time" name="eventTime" id="eventTime"><br><br>
-
-            <label for="">Event Type:</label>
-            <select name="eventType" id="eventType">
-                <option value="">Select Event Type</option>
-                <option value="music workshop">Music Workshop</option>
-                <option value="dance">Dance</option>
-                <option value="techconference">Tech Conference</option>
-                <option value="quiz game">Quiz Games</option>
-            </select><br><br>
-
-            <label for="">Location:</label>
-            <input type="text" name="location" id="location" placeholder="enter event location"><br><br>
-
-            <label for="">Description:</label><br>
-            <textarea name="description" id="description" cols="30" rows="10" placeholder="enter event description"></textarea><br><br>
-
-            <input type="submit" value="Submit">
-        </fieldset> -->
-    
 </body>
+
 </html>
