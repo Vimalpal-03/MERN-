@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Units Documentation</title>
+    <style>
+        /* Base styles */
+        :root {
+            --primary-color: #005b9f;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --sidebar-bg: #f1f1f1;
+            --border-color: #ddd;
+            --code-bg: #272822;
+            --code-color: #f8f8f2;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #ffffff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color:#272822;
+            color: rgb(7, 172, 223);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 60px; /* Offset for header */
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #e0e0e0;
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 2rem 4rem;
+            max-width: 900px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-color);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-color);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: "Courier New", Courier, monospace;
+            margin-bottom: 1.5rem;
+        }
+
+        code {
+            background-color: var(--sidebar-bg);
+            color: #d14;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSS Units Documentation</h1>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#absolute-units">Absolute Units</a></li>
+                <li><a href="#relative-units">Relative Units</a></li>
+                <li><a href="#viewport-units">Viewport Units</a></li>
+                <li><a href="#examples">Usage Examples</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>CSS has several different units for expressing a length. Many CSS properties take "length" values, such as <code>width</code>, <code>margin</code>, <code>padding</code>, <code>font-size</code>, etc.</p>
+                <p>Length is a number followed by a length unit, such as <code>10px</code>, <code>2em</code>, etc. A whitespace cannot appear between the number and the unit. However, if the value is <code>0</code>, the unit can be omitted.</p>
+            </section>
+
+            <section id="absolute-units">
+                <h2>Absolute Units</h2>
+                <p>The absolute length units are fixed and a length expressed in any of these will appear as exactly that size. They are not recommended for use on screen, because screen sizes vary so much. However, they can be used if the output medium is known, such as for print layout.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unit</th>
+                            <th>Description</th>
+                            <th>Equivalent to</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>px</code></td>
+                            <td>Pixels (1px = 1/96th of 1in)</td>
+                            <td>Commonly used for precise screen measurements.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cm</code></td>
+                            <td>Centimeters</td>
+                            <td>96px/2.54</td>
+                        </tr>
+                        <tr>
+                            <td><code>mm</code></td>
+                            <td>Millimeters</td>
+                            <td>1/10th of 1cm</td>
+                        </tr>
+                        <tr>
+                            <td><code>in</code></td>
+                            <td>Inches</td>
+                            <td>96px</td>
+                        </tr>
+                        <tr>
+                            <td><code>pt</code></td>
+                            <td>Points</td>
+                            <td>1/72 of 1in</td>
+                        </tr>
+                        <tr>
+                            <td><code>pc</code></td>
+                            <td>Picas</td>
+                            <td>12pt</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="relative-units">
+                <h2>Relative Units</h2>
+                <p>Relative length units specify a length relative to another length property. Relative length units scale better between different rendering mediums.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unit</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>em</code></td>
+                            <td>Relative to the font-size of the element (2em means 2 times the size of the current font).</td>
+                        </tr>
+                        <tr>
+                            <td><code>rem</code></td>
+                            <td>Relative to font-size of the root element (usually the <code>&lt;html&gt;</code> tag). Ideal for consistent typography.</td>
+                        </tr>
+                        <tr>
+                            <td><code>%</code></td>
+                            <td>Relative to the parent element. Often used for fluid widths and layouts.</td>
+                        </tr>
+                        <tr>
+                            <td><code>ch</code></td>
+                            <td>Relative to width of the "0" (zero) character of the element's font.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="viewport-units">
+                <h2>Viewport-Percentage Lengths</h2>
+                <p>The viewport units are relative to the size of the viewport (the browser window size). If the viewport changes size, the elements size using these units will automatically scale.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Unit</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>vw</code></td>
+                            <td>Relative to 1% of the width of the viewport.</td>
+                        </tr>
+                        <tr>
+                            <td><code>vh</code></td>
+                            <td>Relative to 1% of the height of the viewport.</td>
+                        </tr>
+                        <tr>
+                            <td><code>vmin</code></td>
+                            <td>Relative to 1% of viewport's smaller dimension.</td>
+                        </tr>
+                        <tr>
+                            <td><code>vmax</code></td>
+                            <td>Relative to 1% of viewport's larger dimension.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="examples">
+                <h2>Usage Examples</h2>
+                <p>Here is an example showing how different units are applied in standard CSS:</p>
+                
+<pre><code>/* Absolute Unit Example */
+.box {
+    width: 300px;
+    border: 2px solid black;
+}
+
+/* Relative Unit Example (rem vs em) */
+html {
+    font-size: 16px; /* Base size */
+}
+
+.parent {
+    font-size: 1.5rem; /* 24px */
+}
+
+.child {
+    /* 2em here is relative to parent's 24px, so this is 48px */
+    font-size: 2em; 
+}
+
+/* Viewport Unit Example */
+.hero-section {
+    width: 100vw;   /* Full viewport width */
+    height: 100vh;  /* Full viewport height */
+    padding: 5%;    /* 5% of parent container's width */
+}</code></pre>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

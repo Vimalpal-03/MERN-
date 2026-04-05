@@ -1,0 +1,475 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Colors - Documentation</title>
+    <style>
+        /* Documentation Theme Variables */
+        :root {
+            --primary: #2563eb;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --bg-sidebar: #f1f5f9;
+            --bg-content: #ffffff;
+            --border-color: #e2e8f0;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --inline-code-bg: #f1f5f9;
+            --inline-code-text: #b91c1c;
+        }
+
+        /* Base Reset & Typography */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: var(--text-main); background: var(--bg-body); display: flex; }
+        
+        /* Layout */
+        .sidebar { width: 260px; height: 100vh; position: fixed; background: var(--bg-sidebar); border-right: 1px solid var(--border-color); padding: 2rem 1rem; overflow-y: auto; }
+        .main-content { margin-left: 260px; padding: 3rem; width: calc(100% - 260px); background: var(--bg-content); min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; }
+
+        /* Sidebar Navigation */
+        .sidebar h2 { font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; padding-left: 0.5rem; }
+        .sidebar ul { list-style: none; }
+        .sidebar li a { display: block; padding: 0.5rem 1rem; color: var(--text-muted); text-decoration: none; border-radius: 6px; transition: all 0.2s; font-size: 0.95rem; }
+        .sidebar li a:hover, .sidebar li a.active { background: #e2e8f0; color: var(--primary); font-weight: 500; }
+
+        /* Typography inside Content */
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        h2 { font-size: 1.8rem; margin: 2.5rem 0 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.3rem; margin: 1.5rem 0 0.5rem; }
+        p { margin-bottom: 1rem; color: #334155; }
+        
+        /* Code Blocks */
+        code { font-family: "Fira Code", Consolas, monospace; background: var(--inline-code-bg); color: var(--inline-code-text); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+        pre { background: var(--code-bg); color: var(--code-text); padding: 1.2rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        pre code { background: transparent; color: inherit; padding: 0; }
+
+        /* Visual Swatches for Documentation */
+        .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .swatch { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .swatch-color { height: 70px; width: 100%; }
+        .swatch-info { padding: 0.5rem; text-align: center; background: #fff; font-size: 0.85rem; font-family: monospace; }
+        
+        .demo-box { padding: 2rem; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; margin: 1.5rem 0; border: 2px dashed var(--border-color); }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border-color); padding: 1rem; }
+            .main-content { margin-left: 0; width: 100%; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>CSS Colors</h2>
+        <ul>
+            <li><a href="#introduction" class="active">Introduction</a></li>
+            <li><a href="#color-keywords">Color Keywords</a></li>
+            <li><a href="#hex-colors">HEX Colors</a></li>
+            <li><a href="#rgb-colors">RGB & RGBA</a></li>
+            <li><a href="#hsl-colors">HSL & HSLA</a></li>
+            <li><a href="#opacity">CSS Opacity</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <section id="introduction">
+                <h1>CSS Colors</h1>
+                <p>Colors in CSS are most frequently used to set the color of text (<code>color</code>), backgrounds (<code>background-color</code>), and borders (<code>border-color</code>). CSS provides several different formats and units to define these colors.</p>
+                
+<pre><code>/* Example of applying colors */
+.element {
+    color: white;
+    background-color: #2563eb;
+    border: 2px solid rgb(0, 0, 0);
+}</code></pre>
+            </section>
+
+            <section id="color-keywords">
+                <h2>Color Keywords</h2>
+                <p>CSS supports 140+ standard color names. You can apply a color simply by typing its English name.</p>
+                
+                <div class="swatch-grid">
+                    <div class="swatch">
+                        <div class="swatch-color" style="background-color: Tomato;"></div>
+                        <div class="swatch-info">Tomato</div>
+                    </div>
+                    <div class="swatch">
+                        <div class="swatch-color" style="background-color: DodgerBlue;"></div>
+                        <div class="swatch-info">DodgerBlue</div>
+                    </div>
+                    <div class="swatch">
+                        <div class="swatch-color" style="background-color: MediumSeaGreen;"></div>
+                        <div class="swatch-info">MediumSeaGreen</div>
+                    </div>
+                    <div class="swatch">
+                        <div class="swatch-color" style="background-color: SlateBlue;"></div>
+                        <div class="swatch-info">SlateBlue</div>
+                    </div>
+                </div>
+<pre><code>h1 {
+    color: Tomato;
+}</code></pre>
+            </section>
+
+            <section id="hex-colors">
+                <h2>HEX Colors</h2>
+                <p>A hexadecimal color is specified with: <code>#RRGGBB</code>, where the RR (red), GG (green), and BB (blue) hexadecimal integers specify the components of the color. Values range from <code>00</code> to <code>ff</code>.</p>
+                
+                <div class="demo-box" style="background-color: #ff5733; color: white; border: none;">
+                    Background: #ff5733
+                </div>
+
+<pre><code>.alert-box {
+    background-color: #ff5733; /* A bright orange-red */
+    color: #ffffff; /* White */
+}</code></pre>
+                <p><em>Note: You can also use 3-digit shorthand (e.g., <code>#f00</code> is the same as <code>#ff0000</code>).</em></p>
+            </section>
+
+            <section id="rgb-colors">
+                <h2>RGB & RGBA Colors</h2>
+                <p>An RGB color value is specified with the <code>rgb()</code> function. It takes three parameters (Red, Green, Blue) which define the intensity of the color on a scale from 0 to 255.</p>
+                
+                <p><strong>RGBA</strong> adds a fourth parameter: Alpha. It represents the opacity of the color, ranging from <code>0.0</code> (fully transparent) to <code>1.0</code> (fully opaque).</p>
+
+                <div class="swatch-grid">
+                    <div class="swatch">
+                        <div class="swatch-color" style="background-color: rgb(255, 99, 71);"></div>
+                        <div class="swatch-info">rgb(255, 99, 71)</div>
+                    </div>
+                    <div class="swatch">
+                        <div class="swatch-color" style="background-color: rgba(255, 99, 71, 0.5);"></div>
+                        <div class="swatch-info">Alpha 0.5</div>
+                    </div>
+                </div>
+
+<pre><code>.transparent-overlay {
+    /* 50% transparent blue */
+    background-color: rgba(37, 99, 235, 0.5); 
+}</code></pre>
+            </section>
+
+            <section id="hsl-colors">
+                <h2>HSL & HSLA Colors</h2>
+                <p>HSL stands for <strong>Hue, Saturation, and Lightness</strong>. It is often considered more intuitive for humans to manipulate than RGB or HEX.</p>
+                <ul>
+                    <li><strong>Hue:</strong> A degree on the color wheel from 0 to 360 (0 is red, 120 is green, 240 is blue).</li>
+                    <li><strong>Saturation:</strong> A percentage value (0% is a shade of gray, 100% is the full color).</li>
+                    <li><strong>Lightness:</strong> A percentage value (0% is black, 50% is normal, 100% is white).</li>
+                </ul>
+
+                <div class="demo-box" style="background-color: hsl(120, 60%, 50%); color: white; border: none;">
+                    hsl(120, 60%, 50%)
+                </div>
+
+<pre><code>.success-message {
+    color: hsl(120, 100%, 25%); /* Dark Green */
+    background-color: hsla(120, 60%, 90%, 0.8); /* Light Green with opacity */
+}</code></pre>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Simple script to handle smooth scrolling and active states in the sidebar
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Documentation: Colors & Opacity</title>
+    <style>
+        /* CSS Variables for a clean, modern theme */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-nav: #ffffff;
+            --text-main: #334155;
+            --text-heading: #0f172a;
+            --primary: #6366f1;
+            --border: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --code-inline: #f1f5f9;
+        }
+
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background-color: var(--bg-nav);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            color: var(--text-heading);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-left: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 0.25rem;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--code-inline);
+            color: var(--primary);
+        }
+
+        /* Main Content Area */
+        main {
+            margin-left: 250px;
+            padding: 3rem 2rem;
+            width: calc(100% - 250px);
+            max-width: 900px;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-heading);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-top: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        /* Code Blocks */
+        code {
+            font-family: "Courier New", Courier, monospace;
+            background-color: var(--code-inline);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #be123c;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Visual Demonstration Classes */
+        .demo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .box {
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Specific Demo Styles */
+        .bg-color { background-color: #4f46e5; }
+        .text-color { background-color: white; color: #4f46e5; border: 2px solid #e2e8f0; }
+        .border-color { background-color: white; color: #333; border: 4px solid #4f46e5; }
+
+        /* Opacity Demos */
+        .checkerboard {
+            background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), 
+                              linear-gradient(-45deg, #ccc 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #ccc 75%), 
+                              linear-gradient(-45deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .opacity-box {
+            background-color: #ef4444; /* Red */
+            padding: 1.5rem;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .rgba-box {
+            background-color: rgba(239, 68, 68, 0.5); /* 50% Transparent Red */
+            padding: 1.5rem;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 4px;
+            border: 2px solid #ef4444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+            main { margin-left: 0; width: 100%; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>CSS Docs</h2>
+        <ul>
+            <li><a href="#intro">Colors Introduction</a></li>
+            <li><a href="#applying">Applying Colors</a></li>
+            <li><a href="#opacity-intro">CSS Opacity</a></li>
+            <li><a href="#opacity-vs-rgba">Opacity vs. RGBA</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="intro">
+            <h1>Colors and Opacity in CSS</h1>
+            <p>Cascading Style Sheets (CSS) provide a rich set of tools for defining colors and controlling how transparent or opaque elements appear on a webpage. Understanding how to apply color and manage transparency is fundamental to modern web design.</p>
+        </section>
+
+        <section id="applying">
+            <h2>Applying Colors</h2>
+            <p>In CSS, you typically apply colors to three main properties of an HTML element: its background, its text, and its borders.</p>
+
+            <div class="demo-container">
+                <div class="box bg-color">Background Color</div>
+                <div class="box text-color">Text Color</div>
+                <div class="box border-color">Border Color</div>
+            </div>
+
+<pre><code>.element {
+    background-color: #4f46e5; /* Sets the background */
+    color: #ffffff;            /* Sets the text color */
+    border-color: #4f46e5;     /* Sets the border color */
+}</code></pre>
+            <p>CSS accepts colors in various formats, including <strong>Keywords</strong> (like <code>red</code>), <strong>HEX codes</strong> (like <code>#ff0000</code>), <strong>RGB</strong> (like <code>rgb(255,0,0)</code>), and <strong>HSL</strong> (like <code>hsl(0, 100%, 50%)</code>).</p>
+        </section>
+
+        <section id="opacity-intro">
+            <h2>The CSS Opacity Property</h2>
+            <p>The <code>opacity</code> property sets the transparency level for an entire HTML element. The value must be a number between <code>0.0</code> (fully transparent) and <code>1.0</code> (fully opaque).</p>
+            
+            <p><strong>Important Behavior:</strong> When you use the <code>opacity</code> property to add transparency to the background of an element, all of its child elements inherit the same transparency. This can make text inside a transparent element hard to read.</p>
+
+            <div class="checkerboard">
+                <div class="demo-container" style="margin:0;">
+                    <div class="opacity-box" style="opacity: 1;">Opacity: 1.0</div>
+                    <div class="opacity-box" style="opacity: 0.6;">Opacity: 0.6</div>
+                    <div class="opacity-box" style="opacity: 0.2;">Opacity: 0.2</div>
+                </div>
+            </div>
+
+<pre><code>.transparent-element {
+    opacity: 0.5; /* Element and text are 50% transparent */
+}</code></pre>
+        </section>
+
+        <section id="opacity-vs-rgba">
+            <h2>Opacity vs. RGBA/HSLA (Alpha Channels)</h2>
+            <p>If you want to make a background transparent, but do <strong>not</strong> want the text inside the element to become transparent, you should use the Alpha channel in <code>rgba()</code> or <code>hsla()</code> instead of the <code>opacity</code> property.</p>
+
+            <p>The "A" stands for Alpha, which controls the transparency of that specific color declaration, leaving child elements (like text) fully opaque.</p>
+
+            <div class="checkerboard">
+                <div class="demo-container" style="margin:0;">
+                    <div>
+                        <h3 style="margin-bottom:0.5rem;">Using opacity: 0.5</h3>
+                        <div class="opacity-box" style="opacity: 0.5;">
+                            Notice how my text fades too!
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom:0.5rem;">Using rgba(...)</h3>
+                        <div class="rgba-box">
+                            My background faded, but my text is 100% solid!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<pre><code>/* Bad for readability: Fades background AND text */
+.bad-overlay {
+    background-color: #ef4444;
+    opacity: 0.5; 
+}
+
+/* Good for readability: Fades ONLY the background */
+.good-overlay {
+    background-color: rgba(239, 68, 68, 0.5);
+}</code></pre>
+        </section>
+    </main>
+
+</body>
+</html>
