@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Text Properties Documentation</title>
+    <style>
+        /* Base styles */
+        :root {
+            --primary-color: #802741;
+            /* Teal theme */
+            --secondary-color: #8b1432;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --sidebar-bg: #f1f5f9;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-color: #f8f8f2;
+            --highlight: #b11d49;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: #ffffff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover {
+            background-color: #e2e8f0;
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 2.5rem 4rem;
+            max-width: 900px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            font-size: 1.8rem;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: "#";
+            color: var(--highlight);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--sidebar-bg);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-color);
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-color);
+            padding: 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        code {
+            background-color: var(--sidebar-bg);
+            color: #be123c;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Visual Examples */
+        .demo-box {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .demo-text {
+            margin: 0;
+            padding: 10px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CSS Text Properties</h1>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#alignment">Text Alignment</a></li>
+                <li><a href="#decoration">Text Decoration</a></li>
+                <li><a href="#transformation">Text Transformation</a></li>
+                <li><a href="#spacing">Text Spacing & Indent</a></li>
+                <li><a href="#shadow">Text Shadow</a></li>
+                <li><a href="#wrapping">Wrapping & Breaking</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>While <code>font</code> properties handle the typeface and size of your characters, <strong>text
+                        properties</strong> control the visual formatting of the block of text. This includes how it
+                    aligns, spaces out, wraps, and renders decorative elements like lines and shadows.</p>
+            </section>
+
+            <section id="alignment">
+                <h2>Text Alignment</h2>
+
+                <h3 id="text-align">text-align</h3>
+                <p>The <code>text-align</code> property is used to set the horizontal alignment of a text within its
+                    container.</p>
+                <table>
+                    <tr>
+                        <th>Value</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>left</code></td>
+                        <td>Aligns text to the left edge (default for LTR languages).</td>
+                    </tr>
+                    <tr>
+                        <td><code>right</code></td>
+                        <td>Aligns text to the right edge.</td>
+                    </tr>
+                    <tr>
+                        <td><code>center</code></td>
+                        <td>Centers the text.</td>
+                    </tr>
+                    <tr>
+                        <td><code>justify</code></td>
+                        <td>Stretches the lines so that each line has equal width.</td>
+                    </tr>
+                </table>
+
+                <pre><code>h1 {
+    text-align: center;
+}
+p.newspaper {
+    text-align: justify;
+}</code></pre>
+            </section>
+
+            <section id="decoration">
+                <h2>Text Decoration</h2>
+
+                <h3 id="text-decoration">text-decoration</h3>
+                <p>The <code>text-decoration</code> property is a shorthand for applying lines to text (like underlines
+                    or strikethroughs). It combines <code>line</code>, <code>color</code>, <code>style</code>, and
+                    <code>thickness</code>.</p>
+
+                <pre><code>/* Basic underline */
+a {
+    text-decoration: underline;
+}
+
+/* Advanced: Line, Style, Color, Thickness */
+h2 {
+    text-decoration: underline wavy red 2px;
+}
+
+/* Removing decoration */
+.no-line {
+    text-decoration: none;
+}</code></pre>
+
+                <div class="demo-box">
+                    <p class="demo-text" style="text-decoration: underline wavy #e11d48 2px;">This text has a red, wavy
+                        underline.</p>
+                </div>
+            </section>
+
+            <section id="transformation">
+                <h2>Text Transformation</h2>
+
+                <h3 id="text-transform">text-transform</h3>
+                <p>The <code>text-transform</code> property controls the capitalization of text, allowing you to change
+                    case without altering the HTML source code.</p>
+                <table>
+                    <tr>
+                        <th>Value</th>
+                        <th>Result Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>uppercase</code></td>
+                        <td>THIS IS UPPERCASE</td>
+                    </tr>
+                    <tr>
+                        <td><code>lowercase</code></td>
+                        <td>this is lowercase</td>
+                    </tr>
+                    <tr>
+                        <td><code>capitalize</code></td>
+                        <td>This Is Capitalized</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="spacing">
+                <h2>Text Spacing & Indentation</h2>
+
+                <h3 id="text-indent">text-indent</h3>
+                <p>Used to specify the indentation of the <strong>first line</strong> of a text block.</p>
+                <pre><code>p {
+    text-indent: 50px;
+}</code></pre>
+
+                <h3 id="letter-and-word">letter-spacing & word-spacing</h3>
+                <p>These properties adjust the empty space between characters and whole words, respectively.</p>
+                <pre><code>.wide-letters {
+    letter-spacing: 3px;
+}
+.wide-words {
+    word-spacing: 10px;
+}</code></pre>
+            </section>
+
+            <section id="shadow">
+                <h2>Text Shadow</h2>
+
+                <h3 id="text-shadow">text-shadow</h3>
+                <p>The <code>text-shadow</code> property applies one or more shadows to text. It takes four values:
+                    horizontal offset, vertical offset, blur radius, and color.</p>
+                <pre><code>/* offset-x | offset-y | blur-radius | color */
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Multiple shadows */
+.neon {
+    text-shadow: 0 0 5px #fff, 0 0 10px #0ea5e9;
+}</code></pre>
+
+                <div class="demo-box">
+                    <h1
+                        style="margin:0; font-size: 2.5rem; color: white; text-shadow: 2px 2px 4px #000, 0 0 15px #0ea5e9;">
+                        Glowing Text Shadow</h1>
+                </div>
+            </section>
+
+            <section id="wrapping">
+                <h2>Wrapping & Breaking</h2>
+
+                <h3 id="white-space">white-space</h3>
+                <p>Controls how whitespace and line breaks inside an element are handled.</p>
+                <ul>
+                    <li><code>nowrap</code>: Text will never wrap to the next line. It continues on the same line until
+                        a <code>&lt;br&gt;</code> tag is met.</li>
+                    <li><code>pre</code>: Whitespace is preserved exactly as written in the HTML (like a
+                        <code>&lt;pre&gt;</code> tag).</li>
+                </ul>
+
+                <h3 id="word-break">word-break & overflow-wrap</h3>
+                <p>These properties determine what happens when a single word is too long to fit in its container.</p>
+                <pre><code>.long-url {
+    /* Breaks a long word exactly at the container boundary */
+    word-break: break-all; 
+    
+    /* Better alternative: only breaks if it absolutely has to */
+    overflow-wrap: break-word; 
+}</code></pre>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
