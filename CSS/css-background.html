@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Backgrounds Reference</title>
+    <style>
+        /* CSS Variables - Crimson & Slate Theme */
+        :root {
+            --primary: #be123c; /* Rose 700 */
+            --primary-light: #ffe4e6; /* Rose 100 */
+            --text-main: #334155; /* Slate 700 */
+            --text-muted: #64748b; /* Slate 500 */
+            --bg-body: #f8fafc; /* Slate 50 */
+            --bg-surface: #ffffff;
+            --sidebar-bg: #f1f5f9; /* Slate 100 */
+            --border: #e2e8f0; /* Slate 200 */
+            --code-bg: #0f172a; /* Slate 900 */
+            --code-text: #f8fafc;
+            --demo-bg: #e2e8f0;
+            
+            /* SVG Patterns for pure CSS demos */
+            --svg-dots: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='2' fill='%23be123c' fill-opacity='0.4'/%3E%3C/svg%3E");
+            --svg-waves: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 20, 50 10 T 100 10' fill='none' stroke='%23be123c' stroke-width='2' stroke-opacity='0.5'/%3E%3C/svg%3E");
+        }
+
+        /* Base Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.25rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            position: sticky;
+            top: 68px;
+            height: calc(100vh - 68px);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin: 1.5rem 0 0.75rem 0.5rem;
+        }
+
+        .sidebar h3:first-child { margin-top: 0; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 0.25rem; }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-main);
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 2.5rem 4rem 5rem 4rem;
+            background-color: var(--bg-surface);
+            max-width: 950px;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1.25rem;
+            font-size: 1.8rem;
+        }
+        h2:first-child { margin-top: 0; }
+
+        p { margin-bottom: 1.25rem; }
+
+        /* Code Blocks */
+        code {
+            font-family: "Fira Code", Consolas, monospace;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+            border: 1px solid #334155;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-weight: 400;
+        }
+
+        /* Visual Demos */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .demo-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: var(--bg-body);
+        }
+
+        .demo-label {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: block;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .demo-box {
+            height: 160px;
+            border-radius: 6px;
+            border: 1px dashed #94a3b8;
+            position: relative;
+        }
+
+        /* Specific Demo Styles */
+        .demo-clip-text {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-align: center;
+            line-height: 160px;
+            background-image: linear-gradient(45deg, #be123c, #fb7185, #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+        }
+
+        .scroll-demo {
+            height: 160px;
+            overflow-y: scroll;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1.5rem;
+            }
+            main { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSS Backgrounds Reference</h1>
+    </header>
+
+    <div class="container">
+        <nav class="sidebar">
+            <h3>Core Properties</h3>
+            <ul>
+                <li><a href="#color">background-color</a></li>
+                <li><a href="#image">background-image</a></li>
+                <li><a href="#repeat">background-repeat</a></li>
+                <li><a href="#position">background-position</a></li>
+                <li><a href="#size">background-size</a></li>
+                <li><a href="#attachment">background-attachment</a></li>
+            </ul>
+            <h3>Advanced Properties</h3>
+            <ul>
+                <li><a href="#clip">background-clip</a></li>
+                <li><a href="#blend">background-blend-mode</a></li>
+            </ul>
+            <h3>Shorthand</h3>
+            <ul>
+                <li><a href="#shorthand">The background Property</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="color">
+                <h2>1. background-color</h2>
+                <p>Sets the background color of an element. The background color renders underneath background images.</p>
+<pre><code>.box {
+    background-color: #be123c;       /* HEX Code */
+    background-color: rgb(190, 18, 60);  /* RGB */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+}</code></pre>
+            </section>
+
+            <section id="image">
+                <h2>2. background-image</h2>
+                <p>Applies one or more background images to an element. Multiple images are separated by commas, with the first image appearing "on top" of the others. Gradients are also treated as background images.</p>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <span class="demo-label">linear-gradient()</span>
+                        <div class="demo-box" style="background-image: linear-gradient(135deg, #be123c, #fda4af);"></div>
+                    </div>
+                    <div class="demo-card">
+                        <span class="demo-label">url() Pattern</span>
+                        <div class="demo-box" style="background-image: var(--svg-dots);"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="repeat">
+                <h2>3. background-repeat</h2>
+                <p>Defines how background images are tiled if they are smaller than the element.</p>
+                <ul>
+                    <li><code>repeat</code> (Default): Tiles both X and Y axes.</li>
+                    <li><code>repeat-x</code>: Tiles only horizontally.</li>
+                    <li><code>repeat-y</code>: Tiles only vertically.</li>
+                    <li><code>no-repeat</code>: Does not tile.</li>
+                    <li><code>space</code> / <code>round</code>: Advanced distribution of tiles.</li>
+                </ul>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <span class="demo-label">repeat-x</span>
+                        <div class="demo-box" style="background-image: var(--svg-waves); background-repeat: repeat-x; background-position: center;"></div>
+                    </div>
+                    <div class="demo-card">
+                        <span class="demo-label">no-repeat</span>
+                        <div class="demo-box" style="background-image: var(--svg-waves); background-repeat: no-repeat; background-position: center;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="position">
+                <h2>4. background-position</h2>
+                <p>Sets the starting point of a background image. Accepts keywords (top, right, bottom, left, center), percentages, or pixel lengths.</p>
+<pre><code>.hero {
+    /* x-axis y-axis */
+    background-position: center top;
+    
+    /* Offsets: 10px from right edge, 20px from bottom edge */
+    background-position: right 10px bottom 20px; 
+}</code></pre>
+            </section>
+
+            <section id="size">
+                <h2>5. background-size</h2>
+                <p>Controls the scaling of the background image. Crucial for making backgrounds responsive.</p>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <span class="demo-label">contain (Preserves ratio, fits inside)</span>
+                        <div class="demo-box" style="background-image: radial-gradient(circle, #be123c 40%, transparent 41%); background-repeat: no-repeat; background-position: center; background-size: contain;"></div>
+                    </div>
+                    <div class="demo-card">
+                        <span class="demo-label">cover (Preserves ratio, fills box)</span>
+                        <div class="demo-box" style="background-image: radial-gradient(circle, #be123c 40%, transparent 41%); background-repeat: no-repeat; background-position: center; background-size: cover; border: 1px solid #be123c;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="attachment">
+                <h2>6. background-attachment</h2>
+                <p>Determines if the background image scrolls with the page, or remains fixed to the viewport.</p>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <span class="demo-label">scroll (Moves with content)</span>
+                        <div class="scroll-demo" style="background-image: radial-gradient(#be123c 10%, transparent 11%), radial-gradient(#be123c 10%, transparent 11%); background-size: 20px 20px; background-position: 0 0, 10px 10px; background-attachment: scroll;">
+                            <div style="height: 300px; padding-top: 10px;">Scroll Down...</div>
+                        </div>
+                    </div>
+                    <div class="demo-card">
+                        <span class="demo-label">local (Sticks to element content)</span>
+                        <div class="scroll-demo" style="background-image: radial-gradient(#be123c 10%, transparent 11%), radial-gradient(#be123c 10%, transparent 11%); background-size: 20px 20px; background-position: 0 0, 10px 10px; background-attachment: local;">
+                            <div style="height: 300px; padding-top: 10px;">Scroll Down...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clip">
+                <h2>7. background-clip</h2>
+                <p>Determines how far the background (color or image) should extend within the CSS Box Model.</p>
+                <ul>
+                    <li><code>border-box</code> (Default): Extends to the outside edge of the border.</li>
+                    <li><code>padding-box</code>: Extends to the outside edge of the padding.</li>
+                    <li><code>content-box</code>: Clipped strictly to the content area.</li>
+                    <li><code>text</code>: The background paints only where the text characters are (requires transparent text color).</li>
+                </ul>
+                <div class="demo-grid">
+                    <div class="demo-card" style="grid-column: 1 / -1;">
+                        <span class="demo-label">-webkit-background-clip: text;</span>
+                        <div class="demo-box" style="border: none;">
+                            <h1 class="demo-clip-text">CLIPPED TEXT</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blend">
+                <h2>8. background-blend-mode</h2>
+                <p>Defines how an element's background images should blend with each other and with the element's background color. (Works similarly to Photoshop blend modes).</p>
+<pre><code>.blend {
+    background-image: url("photo.jpg");
+    background-color: #be123c;
+    background-blend-mode: multiply; /* screen, overlay, darken, etc. */
+}</code></pre>
+            </section>
+
+            <section id="shorthand">
+                <h2>9. The background Shorthand</h2>
+                <p>You can combine all these properties into a single <code>background</code> declaration. If <code>background-size</code> is included, it <strong>must</strong> immediately follow <code>background-position</code>, separated by a forward slash <code>/</code>.</p>
+                <p><strong>Order:</strong> <code>color image position/size repeat attachment</code></p>
+<pre><code>.card {
+    /* Sets color, image, centers it, makes it cover, prevents repeat, and fixes it */
+    background: #0f172a url("pattern.svg") center/cover no-repeat fixed;
+}</code></pre>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
