@@ -1,0 +1,619 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layout Documentation</title>
+    <style>
+        /* --- Base Documentation Styles --- */
+        :root {
+            --primary-color: #2563eb;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-main: #ffffff;
+            --bg-sidebar: #f3f4f6;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --grid-item-bg: #3b82f6;
+            --grid-item-border: #1d4ed8;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            background-color: var(--bg-main);
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background-color: var(--bg-sidebar);
+            height: 100vh;
+            position: fixed;
+            padding: 2rem 1rem;
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Main Content Area */
+        main {
+            margin-left: 280px; /* offset for sidebar */
+            padding: 3rem;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--bg-sidebar);
+            padding-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            color: var(--text-main);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: "Fira Code", monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: "Fira Code", monospace;
+            background-color: #f1f5f9;
+            color: #be123c;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* --- Live Grid Example Styles --- */
+        .demo-box {
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: #f9fafb;
+            margin: 1.5rem 0;
+        }
+
+        .grid-item {
+            background-color: var(--grid-item-bg);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid var(--grid-item-border);
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Specific Grid Demonstrations */
+        .grid-basic {
+            display: grid;
+        }
+
+        .grid-columns {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 10px;
+        }
+
+        .grid-areas {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "sidebar main main"
+                "footer footer footer";
+            gap: 10px;
+        }
+
+        .item-header { grid-area: header; background-color: #8b5cf6; }
+        .item-sidebar { grid-area: sidebar; background-color: #ec4899; }
+        .item-main { grid-area: main; background-color: #10b981; height: 100px;}
+        .item-footer { grid-area: footer; background-color: #f59e0b; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>CSS Grid Docs</h2>
+        <ul>
+            <li><a href="#introduction">1. Introduction</a></li>
+            <li><a href="#display-grid">2. display: grid</a></li>
+            <li><a href="#template-columns">3. grid-template-columns</a></li>
+            <li><a href="#gap">4. grid-gap</a></li>
+            <li><a href="#grid-areas">5. grid-template-areas</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>CSS Grid Layout Module</h1>
+        <p>The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning.</p>
+
+        <section id="introduction">
+            <h2>1. Introduction to Grid</h2>
+            <p>To get started you have to define a container element as a grid with <code>display: grid</code>. All direct children of the grid container automatically become grid items.</p>
+        </section>
+
+        <section id="display-grid">
+            <h2>2. The display Property</h2>
+            <p>Setting <code>display: grid;</code> creates a block-level grid container. By default, it will stack items on top of each other just like block elements, but it unlocks all other grid properties.</p>
+            
+<pre><code>.grid-container {
+    display: grid;
+}</code></pre>
+            
+            <div class="demo-box">
+                <div class="grid-basic">
+                    <div class="grid-item">Item 1</div>
+                    <div class="grid-item" style="margin-top: 5px;">Item 2</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="template-columns">
+            <h2>3. grid-template-columns</h2>
+            <p>The <code>grid-template-columns</code> property defines the number of columns in your grid layout, and it can define the width of each column. You can use pixels, percentages, or the flexible <code>fr</code> (fractional) unit.</p>
+            <p>In the example below, we create three columns. The middle column is twice as wide as the outer columns (<code>1fr 2fr 1fr</code>).</p>
+
+<pre><code>.grid-columns {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 10px;
+}</code></pre>
+
+            <div class="demo-box">
+                <div class="grid-columns">
+                    <div class="grid-item">1fr</div>
+                    <div class="grid-item">2fr</div>
+                    <div class="grid-item">1fr</div>
+                    <div class="grid-item">1fr</div>
+                    <div class="grid-item">2fr</div>
+                    <div class="grid-item">1fr</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gap">
+            <h2>4. Gap (Gutters)</h2>
+            <p>The <code>gap</code> property (formerly <code>grid-gap</code>) is a shorthand for <code>row-gap</code> and <code>column-gap</code>. It defines the size of the empty space between the rows and columns.</p>
+            
+<pre><code>.grid-container {
+    display: grid;
+    gap: 20px; /* 20px space between all rows and columns */
+}</code></pre>
+        </section>
+
+        <section id="grid-areas">
+            <h2>5. grid-template-areas</h2>
+            <p>The <code>grid-template-areas</code> property specifies areas within the grid layout. You can name grid items using the <code>grid-area</code> property, and then reference those names to build a visual layout in your CSS.</p>
+
+<pre><code>.grid-areas {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+    gap: 10px;
+}
+
+.item-header { grid-area: header; }
+.item-sidebar { grid-area: sidebar; }
+.item-main { grid-area: main; }
+.item-footer { grid-area: footer; }
+</code></pre>
+
+            <div class="demo-box">
+                <div class="grid-areas">
+                    <div class="grid-item item-header">Header</div>
+                    <div class="grid-item item-sidebar">Sidebar</div>
+                    <div class="grid-item item-main">Main Content Area</div>
+                    <div class="grid-item item-footer">Footer</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid layout: Advanced Properties</title>
+    <style>
+        /* --- Base & Layout Styles --- */
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-body: #f8fafc;
+            --bg-sidebar: #ffffff;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --grid-bg: #e0f2fe;
+            --item-bg: #38bdf8;
+            --item-highlight: #f59e0b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            display: flex;
+            line-height: 1.6;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            width: 260px;
+            background: var(--bg-sidebar);
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+        }
+
+        aside h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        aside li { margin-bottom: 0.5rem; }
+
+        aside a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        aside a:hover { color: var(--primary); }
+
+        /* --- Main Content --- */
+        main {
+            margin-left: 260px;
+            padding: 3rem 4rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 { font-size: 2.5rem; margin-top: 0; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; }
+        h2 { font-size: 1.8rem; margin-top: 3rem; color: var(--primary-dark); }
+        h3 { font-size: 1.4rem; margin-top: 2rem; }
+        p { color: var(--text-light); }
+
+        /* --- Typography & Code --- */
+        code {
+            font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+            background: #f1f5f9;
+            color: #b91c1c;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: ui-monospace, monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* --- Demo Containers --- */
+        .demo-section {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .grid-item {
+            background-color: var(--item-bg);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid var(--primary-dark);
+        }
+
+        .highlight { background-color: var(--item-highlight); border-color: #b45309; }
+
+        /* =========================================
+           GRID SPECIFIC DEMO STYLES
+           ========================================= */
+
+        /* Terminology */
+        .demo-track {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        .track-highlight {
+            background-color: rgba(245, 158, 11, 0.3);
+            border: 2px dashed #b45309;
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            z-index: 10;
+        }
+
+        /* Template & Gap */
+        .demo-template {
+            display: grid;
+            grid-template-columns: 100px 1fr 2fr;
+            grid-template-rows: 60px auto;
+            gap: 15px; /* Container prop */
+        }
+
+        /* Container Alignments */
+        .demo-container-align {
+            display: grid;
+            grid-template-columns: 80px 80px 80px;
+            height: 200px;
+            background-color: var(--grid-bg);
+            border: 1px dashed var(--primary);
+            gap: 5px;
+            
+            /* Container Alignment Properties */
+            justify-content: space-between; 
+            align-content: stretch; /* Stretches tracks to fill container */
+            align-items: center; /* Aligns items vertically inside their cells */
+        }
+
+        /* Child Placement (Start/End/Area) */
+        .demo-placement {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 80px);
+            gap: 10px;
+        }
+        .item-a {
+            grid-column-start: 1;
+            grid-column-end: 3; /* Spans cols 1 to 3 */
+            grid-row-start: 1;
+            grid-row-end: 3;    /* Spans rows 1 to 3 */
+        }
+        .item-b {
+            grid-area: 1 / 3 / 2 / 5; /* row-start / col-start / row-end / col-end */
+        }
+
+        /* Child Alignment */
+        .demo-child-align {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 150px;
+            gap: 10px;
+            background-color: var(--grid-bg);
+        }
+        .align-self-demo {
+            justify-self: end;  /* Aligns right within cell */
+            align-self: end;    /* Aligns bottom within cell */
+        }
+
+    </style>
+</head>
+<body>
+
+    <aside>
+        <h2>Concepts</h2>
+        <ul>
+            <li><a href="#terminology">Grid Cell & Track</a></li>
+        </ul>
+
+        <h2>Container Props</h2>
+        <ul>
+            <li><a href="#templates">Template Rows & Cols</a></li>
+            <li><a href="#gap">Gap</a></li>
+            <li><a href="#content-alignment">Justify & Align Content</a></li>
+            <li><a href="#items-alignment">Align Items</a></li>
+        </ul>
+
+        <h2>Child Props</h2>
+        <ul>
+            <li><a href="#placement">Column & Row Start/End</a></li>
+            <li><a href="#grid-area">Grid Area</a></li>
+            <li><a href="#self-alignment">Justify & Align Self</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <h1>CSS Grid Layout Module</h1>
+        <p>A comprehensive guide to Grid container properties and Grid item (child) properties.</p>
+
+        <section id="terminology">
+            <h2>1. Core Terminology</h2>
+            
+            <h3>Grid Cell</h3>
+            <p>A <strong>Grid Cell</strong> is the smallest unit on a grid. It is the space between four intersecting grid lines, much like a single table cell.</p>
+
+            <h3>Grid Track</h3>
+            <p>A <strong>Grid Track</strong> is the space between two adjacent grid lines. You can think of them as the vertical columns or horizontal rows of your grid.</p>
+            
+            <div class="demo-section" style="position: relative;">
+                <div class="demo-track">
+                    <div class="grid-item">Cell</div>
+                    <div class="grid-item highlight" style="opacity: 0.5;">Track (Col)</div>
+                    <div class="grid-item">Cell</div>
+                    <div class="grid-item">Cell</div>
+                    <div class="grid-item highlight" style="opacity: 0.5;">Track (Col)</div>
+                    <div class="grid-item">Cell</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="container-props">
+            <h2>2. Container Properties</h2>
+            <p>Properties applied directly to the parent element carrying <code>display: grid;</code>.</p>
+
+            <h3 id="templates">grid-template-columns & grid-template-rows</h3>
+            <p>These properties define the size and number of grid tracks (rows and columns).</p>
+<pre><code>.container {
+  display: grid;
+  grid-template-columns: 100px 1fr 2fr;
+  grid-template-rows: 60px auto;
+}</code></pre>
+
+            <h3 id="gap">gap</h3>
+            <p>The <code>gap</code> property dictates the size of the gutters between grid rows and columns.</p>
+            <div class="demo-section">
+                <div class="demo-template">
+                    <div class="grid-item">100px</div>
+                    <div class="grid-item">1fr</div>
+                    <div class="grid-item">2fr</div>
+                    <div class="grid-item" style="grid-column: span 3;">Row 2: auto</div>
+                </div>
+            </div>
+
+            <h3 id="content-alignment">justify-content & align-content</h3>
+            <p>When the total size of your grid is strictly smaller than the size of its grid container, you can align the entire grid inside the container.</p>
+            <ul>
+                <li><code>justify-content</code>: Aligns the grid along the <strong>inline (horizontal)</strong> axis.</li>
+                <li><code>align-content</code>: Aligns the grid along the <strong>block (vertical)</strong> axis. If set to <code>stretch</code> (default), rows stretch to fill the container height.</li>
+            </ul>
+
+            <h3 id="items-alignment">align-items</h3>
+            <p>While <code>align-content</code> aligns the <em>tracks</em>, <code>align-items</code> aligns the <em>content inside the individual grid cells</em> along the vertical axis.</p>
+            
+<pre><code>.container-align {
+  height: 200px;
+  justify-content: space-between; /* Horizontal spread */
+  align-content: stretch;         /* Vertical track stretching */
+  align-items: center;            /* Vertical item centering */
+}</code></pre>
+            
+            <div class="demo-section">
+                <p><em>Notice how tracks spread horizontally, stretch vertically, but items are centered inside their cells.</em></p>
+                <div class="demo-container-align">
+                    <div class="grid-item">Item</div>
+                    <div class="grid-item">Item</div>
+                    <div class="grid-item">Item</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="child-props">
+            <h2>3. Child (Grid Item) Properties</h2>
+            <p>Properties applied directly to the direct children of a grid container.</p>
+
+            <h3 id="placement">grid-column-start/end & grid-row-start/end</h3>
+            <p>These determine a grid item's location and size by referring to specific grid lines. You can also use the shorthand <code>grid-column</code> and <code>grid-row</code>.</p>
+
+            <h3 id="grid-area">grid-area</h3>
+            <p>A shorthand for <code>grid-row-start / grid-column-start / grid-row-end / grid-column-end</code>.</p>
+
+<pre><code>.item-a {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.item-b {
+  /* row-start / col-start / row-end / col-end */
+  grid-area: 1 / 3 / 2 / 5;
+}</code></pre>
+
+            <div class="demo-section">
+                <div class="demo-placement">
+                    <div class="grid-item highlight item-a">Item A (Spans 2x2)</div>
+                    <div class="grid-item highlight item-b">Item B (Area shorthand)</div>
+                    <div class="grid-item">C</div>
+                    <div class="grid-item">D</div>
+                    <div class="grid-item">E</div>
+                    <div class="grid-item">F</div>
+                </div>
+            </div>
+
+            <h3 id="self-alignment">justify-self & align-self</h3>
+            <p>Overrides the container's <code>align-items</code> and <code>justify-items</code> for a specific, single grid item.</p>
+            <ul>
+                <li><code>justify-self</code>: Aligns the item horizontally inside its own cell.</li>
+                <li><code>align-self</code>: Aligns the item vertically inside its own cell.</li>
+            </ul>
+
+<pre><code>.child-item {
+  justify-self: end; /* Pushed to the right edge of cell */
+  align-self: end;   /* Pushed to the bottom edge of cell */
+}</code></pre>
+
+            <div class="demo-section">
+                <div class="demo-child-align">
+                    <div class="grid-item">Default (Stretch)</div>
+                    <div class="grid-item highlight align-self-demo">Justify & Align: end</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
