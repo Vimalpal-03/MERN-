@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Keyframes Documentation</title>
+    <style>
+        /* --- Base & Doc Styling --- */
+        :root {
+            --primary: #3b82f6;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --bg-body: #ffffff;
+            --bg-sidebar: #f9fafb;
+            --bg-demo: #f3f4f6;
+            --bg-code: #1e293b;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 260px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        aside h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        aside ul {
+            list-style: none;
+        }
+
+        aside li {
+            margin-bottom: 0.5rem;
+        }
+
+        aside a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        aside a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--bg-code);
+            color: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: "Fira Code", monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: "Fira Code", monospace;
+            background-color: var(--bg-demo);
+            color: #ef4444;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Demo Containers */
+        .demo-box {
+            background-color: var(--bg-demo);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            min-height: 200px;
+        }
+
+        /* --- CSS Keyframe Animations (The actual documented code) --- */
+
+        /* 1. Pulse Animation */
+        @keyframes pulse-anim {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .demo-pulse {
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary);
+            border-radius: 12px;
+            animation: pulse-anim 2s ease-in-out infinite;
+        }
+
+        /* 2. Loading Spinner */
+        @keyframes spin-anim {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .demo-spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #d1d5db;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin-anim 1s linear infinite;
+        }
+
+        /* 3. Bouncing Ball */
+        @keyframes bounce-anim {
+            0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+            50% { transform: translateY(-50px); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+        }
+
+        .demo-bounce {
+            width: 50px;
+            height: 50px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            animation: bounce-anim 1s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <h2>Documentation</h2>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#pulse">1. Pulse Effect</a></li>
+            <li><a href="#spinner">2. Loading Spinner</a></li>
+            <li><a href="#bounce">3. Bouncing Ball</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <section id="introduction">
+            <h1>CSS Keyframe Animations</h1>
+            <p>The <code>@keyframes</code> CSS at-rule controls the intermediate steps in a CSS animation sequence by defining styles for keyframes (or waypoints) along the animation sequence. This gives more control over the intermediate steps of the animation sequence than transitions.</p>
+        </section>
+
+        <section id="pulse">
+            <h2>1. Continuous Pulse Effect</h2>
+            <p>This animation scales an element up slightly and reduces its opacity, then returns it to its original state, creating a breathing or pulsing effect.</p>
+            
+            <div class="demo-box">
+                <div class="demo-pulse"></div>
+            </div>
+
+<pre><code>/* Define the keyframes */
+@keyframes pulse-anim {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Apply to the element */
+.element {
+    animation: pulse-anim 2s ease-in-out infinite;
+}</code></pre>
+        </section>
+
+        <section id="spinner">
+            <h2>2. Loading Spinner</h2>
+            <p>A classic loading spinner created by rotating an element with a partial border 360 degrees infinitely.</p>
+            
+            <div class="demo-box">
+                <div class="demo-spinner"></div>
+            </div>
+
+<pre><code>/* Define the keyframes */
+@keyframes spin-anim {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Apply to the element */
+.spinner {
+    border: 6px solid #d1d5db;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin-anim 1s linear infinite;
+}</code></pre>
+        </section>
+
+        <section id="bounce">
+            <h2>3. Bouncing Ball</h2>
+            <p>By manipulating the <code>translateY</code> property and adjusting the <code>cubic-bezier</code> timing functions midway through the animation, we can simulate realistic gravity and bouncing.</p>
+            
+            <div class="demo-box">
+                <div class="demo-bounce"></div>
+            </div>
+
+<pre><code>/* Define the keyframes */
+@keyframes bounce-anim {
+    0%, 100% { 
+        transform: translateY(0); 
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1); 
+    }
+    50% { 
+        transform: translateY(-50px); 
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1); 
+    }
+}
+
+/* Apply to the element */
+.ball {
+    border-radius: 50%;
+    animation: bounce-anim 1s infinite;
+}</code></pre>
+        </section>
+    </main>
+
+</body>
+</html>
+
