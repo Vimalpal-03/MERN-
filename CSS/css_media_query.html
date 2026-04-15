@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Media Queries Documentation</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --sidebar-bg: #ffffff;
+            --code-bg: #1e1e1e;
+            --code-text: #d4d4d4;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Layout Container */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        /* Main Content Area */
+        .content {
+            flex: 1;
+            padding: 2rem 4rem;
+            overflow-y: auto;
+            background-color: #ffffff;
+        }
+
+        .content section {
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: "Fira Code", Consolas, Monaco, "Andale Mono", monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            background-color: #f1f5f9;
+            color: #ef4444;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Notice Box */
+        .notice {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Internal Media Queries for the Doc itself */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                height: auto;
+                padding: 1rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSS Docs <span>| Media Queries</span></h1>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><strong>Contents</strong></li>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#syntax">Basic Syntax</a></li>
+                    <li><a href="#media-types">Media Types</a></li>
+                    <li><a href="#features">Media Features</a></li>
+                    <li><a href="#examples">Common Breakpoints</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="introduction">
+                <h2>CSS Media Queries</h2>
+                <p>Media queries are a fundamental part of responsive web design. They allow you to apply CSS styles only when a specific condition is met, such as the viewport width being larger or smaller than a certain size, or if the device is a screen rather than printed paper.</p>
+                
+                <div class="notice">
+                    <strong>Note:</strong> Media queries were introduced in CSS3 and are supported by all modern browsers.
+                </div>
+            </section>
+
+            <section id="syntax">
+                <h2>Basic Syntax</h2>
+                <p>A media query consists of a media type and can contain one or more expressions, which resolve to either true or false.</p>
+                <pre><code>@media not|only mediatype and (mediafeature and|or|not mediafeature) {
+  /* CSS rules go here */
+}</code></pre>
+                <p>If the specified media type matches the type of device the document is being displayed on and all expressions in the media query are true, the CSS rules are applied.</p>
+            </section>
+
+            <section id="media-types">
+                <h2>Media Types</h2>
+                <p>There are several media types, but the most commonly used ones are:</p>
+                <ul>
+                    <li><code>all</code> - Used for all media type devices (Default).</li>
+                    <li><code>print</code> - Used for printers.</li>
+                    <li><code>screen</code> - Used for computer screens, tablets, smart-phones etc.</li>
+                    <li><code>speech</code> - Used for screenreaders that "read" the page out loud.</li>
+                </ul>
+                
+                <h3>Example: Print Styling</h3>
+                <p>You can hide elements when printing a webpage:</p>
+                <pre><code>@media print {
+  .navigation-bar, .footer {
+    display: none;
+  }
+}</code></pre>
+            </section>
+
+            <section id="features">
+                <h2>Media Features</h2>
+                <p>Media features describe specific characteristics of the user agent, output device, or environment. The most common features revolve around viewport dimensions:</p>
+                <ul>
+                    <li><code>max-width</code>: Rules apply if the viewport width is <em>less than or equal to</em> the value.</li>
+                    <li><code>min-width</code>: Rules apply if the viewport width is <em>greater than or equal to</em> the value.</li>
+                    <li><code>orientation</code>: Checks if the device is in <code>landscape</code> or <code>portrait</code> mode.</li>
+                </ul>
+            </section>
+
+            <section id="examples">
+                <h2>Common Breakpoints (Examples)</h2>
+                <p>Here is a standard set of media queries using mobile-first design principles (using <code>min-width</code>):</p>
+                
+                <pre><code>/* Extra small devices (phones, 600px and down) */
+/* Default CSS goes outside media queries */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  body {
+    background-color: lightgreen;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  body {
+    background-color: lightcoral;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  body {
+    background-color: lightgoldenrodyellow;
+  }
+}</code></pre>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
